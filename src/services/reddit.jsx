@@ -23,4 +23,33 @@ class RedditService {
       }
     });
   }
+
+  async getPostsFromSubreddit(subredditUrl) {
+    const url = `${ REDDIT_ENDPOINT }${ subredditUrl }hot.json`;
+    const response = await fetch(url, {
+      method: 'GET',
+      header: {
+        Accept: 'application/json'
+      }
+    });
+    if (!response.ok) throw new Error(`getPostsFromSubreddit Failed, HTTP status ${ response.status }`);
+
+    const data = await response.json();
+    const { children } = data;
+    if (!children) throw new Error(`getPostsFromSubreddit Failed, children not returned`)
+
+    return children.map(post => {
+      const body = post.selftext;
+      return {
+        id: post.id,
+        title: post.title,
+        topicUrl: subredditUrl,
+        body: body,
+        thumbnail: post.thumnail,
+        url: !body ? post.url : undefined
+      }
+    });
+  }
 }
+
+export default new RedditService();

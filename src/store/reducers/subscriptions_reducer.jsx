@@ -7,7 +7,7 @@ const initialState = Immutable({
   renderHomepage: false
 });
 
-export default(state = initialState, action = {}) {
+export default(state = initialState, action = {}) => {
   switch (action.type) {
     case FETCHED_SUBREDDITS:
       return state.merge({
