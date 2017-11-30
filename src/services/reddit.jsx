@@ -1,25 +1,26 @@
 const REDDIT_ENDPOINT = 'https://www.reddit.com';
 
 class RedditService {
-  async getPopularSubreddits() {
-    const url = `${ REDDIT_ENDPOINT }/subreddits/popular.json`;
+  async getDefaultSubreddits() {
+    const url = `${ REDDIT_ENDPOINT }/subreddits/default.json`;
     const response = await fetch(url, {
       method: 'GET',
       header: {
         Accept: 'application/json'
       }
     });
-    if (!response.ok) throw new Error(`getPopularSubreddits Failed, HTTP status ${ response.status }`);
+    if (!response.ok) throw new Error(`getDefaultSubreddits Failed, HTTP status ${ response.status }`);
 
     const data = await response.json();
-    const { children } = data;
-    if (!children) throw new Error(`getPopularSubreddits Failed, children not returned`)
+    const children  = data.data.children;
+
+    if (!children) throw new Error(`getDefaultSubreddits Failed, children not returned`)
 
     return children.sort((a, b) => a.subscribers < b.subscribers).map(subreddit => {
       return {
-        title: subreddit.display_name,
-        description: subreddit.public_description,
-        url: subreddit.url
+        title: subreddit.data.display_name,
+        description: subreddit.data.public_description,
+        url: subreddit.data.url
       }
     });
   }

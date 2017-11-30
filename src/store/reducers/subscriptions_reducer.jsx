@@ -3,7 +3,7 @@ import Immutable from 'seamless-immutable';
 
 const initialState = Immutable({
   subreddits: undefined,
-  subscribedSubreddits: [],
+  subscribedSubreddits: ['/r/news'],
   renderHomepage: false
 });
 
