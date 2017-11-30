@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as Selectors from './store/reducers/selectors';
+import Subscriptions from './containers/Subscriptions';
+import Home from './containers/Home';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        {
+          !this.props.isUserReady ?
+          <Subscriptions /> : <div></div>
+        }
+        <Home />
       </div>
     );
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    isUserReady: Selectors.isUserReady(state)
+  };
+}
+
+export default connect(mapStateToProps)(App);
