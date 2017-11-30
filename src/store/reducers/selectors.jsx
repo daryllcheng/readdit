@@ -1,3 +1,3 @@
-export function isUserReady(state) {
-  return state.subscriptions.userReady;
+export function renderHomepage(state) {
+  return state.subscriptions.renderHomepage;
 }

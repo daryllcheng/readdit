@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <div className="App">
         {
-          !this.props.isUserReady ?
+          !this.props.renderHomepage ?
           <Subscriptions /> : <div></div>
         }
         <Home />
@@ -20,7 +20,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    isUserReady: Selectors.isUserReady(state)
+    isUserReady: Selectors.renderHomepage(state)
   };
 }
 
