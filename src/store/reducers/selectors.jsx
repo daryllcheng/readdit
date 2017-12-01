@@ -9,3 +9,7 @@ export function getSubreddits(state) {
 export function renderHomepage(state) {
   return state.subscriptions.renderHomepage;
 }
+
+export function getPosts(state) {
+  return state.posts.subredditPosts;
+}

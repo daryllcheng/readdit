@@ -36,18 +36,18 @@ class RedditService {
     if (!response.ok) throw new Error(`getPostsFromSubreddit Failed, HTTP status ${ response.status }`);
 
     const data = await response.json();
-    const { children } = data;
+    const children  = data.data.children;
     if (!children) throw new Error(`getPostsFromSubreddit Failed, children not returned`)
 
     return children.map(post => {
-      const body = post.selftext;
+      const body = post.data.selftext;
       return {
-        id: post.id,
-        title: post.title,
+        id: post.data.id,
+        title: post.data.title,
         topicUrl: subredditUrl,
         body: body,
-        thumbnail: post.thumnail,
-        url: !body ? post.url : undefined
+        thumbnail: post.data.thumnail,
+        url: !body ? post.data.url : undefined
       }
     });
   }

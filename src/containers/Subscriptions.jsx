@@ -19,8 +19,8 @@ class Subscriptions extends Component {
   }
 
   render() {
+    console.log(this.props.subreddits);
     if (!this.props.subreddits) return this.renderLoading();
-    console.log(this.props.subreddits[0]);
     return (
       <div className="Subscriptions">
         <h1>Pick 3 Subreddits</h1>

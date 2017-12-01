@@ -7,8 +7,8 @@ export function fetchPosts() {
     try {
       const subscribedSubredditUrls = getSubscribedSubreddits(getState());
       const fetchPromises = subscribedSubredditUrls.map(url => redditService.getPostsFromSubreddit(url));
-      const subredditPosts = await Promise.all(fetchPromises);
-      dispatch({ type: FETCHED_POSTS, subredditPosts });
+      const rawPosts = await Promise.all(fetchPromises);
+      dispatch({ type: FETCHED_POSTS, subredditPosts: rawPosts['0'] });
     } catch (error) {
       console.error(error);
     }
