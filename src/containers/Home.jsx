@@ -60,7 +60,7 @@ class Home extends Component {
 function mapStateToProps(state) {
   return {
     subredditPosts: selectors.getPosts(state),
-    subscribedSubreddits: selectors.getSubscribedSubreddits(state)
+    subscribedSubredditUrls: selectors.getSubscribedSubredditUrls(state)
   }
 };
 
