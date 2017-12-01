@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchSubreddits, toggleSuggestions } from '../store/actions/subscriptions_action';
+import { fetchSubreddits, toggleSuggestions, subscribeToSubreddit } from '../store/actions/subscriptions_action';
+import { fetchPosts } from '../store/actions/posts_action';
 import * as selectors from '../store/reducers/selectors';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -15,7 +16,6 @@ class Subscriptions extends Component {
     this.state = {
       checkedItems: []
     }
-
   }
 
   componentDidMount() {
@@ -24,14 +24,11 @@ class Subscriptions extends Component {
 
   handleClose = () => {
     this.props.dispatch(toggleSuggestions());
+    this.props.dispatch(fetchPosts());
   };
 
   handleCheck(url) {
-    let updatedItems = this.state.checkedItems.indexOf(url) === -1 ?
-    [...this.state.checkedItems, url] : [...this.state.checkedItems].filter(item => item !== url);
-    this.setState(state => ({
-      checkedItems: updatedItems
-    }))
+    this.props.dispatch(subscribeToSubreddit(url));
   }
 
   renderLoading() {

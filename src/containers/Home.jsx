@@ -31,7 +31,7 @@ class Home extends Component {
       <div className="Home">
       <RaisedButton label="Our Suggestions" onClick={ this.handleOpen } />
       {
-        this.props.subredditPosts.length > 24 ?
+        this.props.subredditPosts && this.props.subredditPosts.length > 24 ?
         <Grid
           component="ul"
           columns={5}
@@ -50,7 +50,7 @@ class Home extends Component {
             ))
           }
         </Grid> :
-        <p>Loading...</p>
+        <p>Select a few subreddits!</p>
       }
       </div>
     );

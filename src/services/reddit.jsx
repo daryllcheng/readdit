@@ -37,8 +37,8 @@ class RedditService {
 
     const data = await response.json();
     const children  = data.data.children;
+    
     if (!children) throw new Error(`getPostsFromSubreddit Failed, children not returned`)
-
     return children.map(post => {
       const body = post.data.selftext;
       return {

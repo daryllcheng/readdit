@@ -1,6 +1,6 @@
 import { FETCHED_SUBREDDITS, SUBSCRIBED_SUBREDDITS, RENDER_SUGGESTIONS } from './types';
 import redditService from '../../services/reddit';
-import { getSubscribedSubreddits } from '../reducers/selectors';
+import { getSubscribedSubreddits, renderSuggestions } from '../reducers/selectors';
 import { fetchPosts } from './posts_action';
 
 export function fetchSubreddits() {
@@ -18,19 +18,11 @@ export function fetchSubreddits() {
 export function subscribeToSubreddit(url) {
   return (dispatch, getState) => {
     const subscribedSubreddits = getSubscribedSubreddits(getState());
-    let newSubscribedSubreddits
-    if (subscribedSubreddits.indexOf(url) !== -1 ) {
-      newSubscribedSubreddits = subscribedSubreddits.filter(subreddit => subreddit !== url);
-    } else {
-      newSubscribedSubreddits = subscribedSubreddits.length < 3 ?
-      subscribedSubreddits.concat(url) :
-      subscribedSubreddits.slice(1).concat(url);
-    }
-    dispatch({ type: SUBSCRIBED_SUBREDDITS, subscribedSubreddits: newSubscribedSubreddits });
+    const newSubscribedSubreddits = subscribedSubreddits.indexOf(url) !== -1 ?
+    subscribedSubreddits.filter(subreddit => subreddit !== url) :
+    [...subscribedSubreddits, url];
 
-    if (newSubscribedSubreddits.length === 3) {
-      dispatch(fetchPosts());
-    }
+    dispatch({ type: SUBSCRIBED_SUBREDDITS, subscribedSubreddits: newSubscribedSubreddits });
   }
 }
 
