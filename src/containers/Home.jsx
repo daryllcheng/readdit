@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as selectors from '../store/reducers/selectors';
-import { CSSGrid, layout, makeResponsive, measureItems } from 'react-stonecutter';
 import { fetchPosts } from '../store/actions/posts_action';
+import { toggleSuggestions } from '../store/actions/subscriptions_action';
 import Posttile from '../components/posts/Posttile';
+import { CSSGrid, layout, makeResponsive, measureItems } from 'react-stonecutter';
+import RaisedButton from 'material-ui/RaisedButton';
+
 
 class Home extends Component {
   constructor(props) {
@@ -14,14 +17,19 @@ class Home extends Component {
     this.props.dispatch(fetchPosts());
   }
 
+  handleOpen = () => {
+    this.props.dispatch(toggleSuggestions());
+  };
+
   render() {
     const Grid = makeResponsive(measureItems(CSSGrid, { measureImages: true }), {
       maxWidth: 1920,
       minPadding: 20
     });
-    
+
     return (
       <div className="Home">
+      <RaisedButton label="Our Suggestions" onClick={ this.handleOpen } />
       {
         this.props.subredditPosts.length > 24 ?
         <Grid

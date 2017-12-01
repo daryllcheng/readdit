@@ -34,6 +34,6 @@ export function subscribeToSubreddit(url) {
   }
 }
 
-export function renderSuggestions() {
+export function toggleSuggestions() {
   return ({ type: RENDER_SUGGESTIONS });
 }

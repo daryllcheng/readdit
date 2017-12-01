@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchSubreddits, renderSuggestions } from '../store/actions/subscriptions_action';
+import { fetchSubreddits, toggleSuggestions } from '../store/actions/subscriptions_action';
 import * as selectors from '../store/reducers/selectors';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
+import Checkbox from 'material-ui/Checkbox';
 
 class Subscriptions extends Component {
   constructor(props) {
@@ -18,11 +19,11 @@ class Subscriptions extends Component {
   }
 
   handleOpen = () => {
-    this.props.dispatch(renderSuggestions());
+    this.props.dispatch(toggleSuggestions());
   };
 
   handleClose = () => {
-    this.props.dispatch(renderSuggestions());
+    this.props.dispatch(toggleSuggestions());
   };
 
   renderLoading() {
@@ -58,18 +59,18 @@ class Subscriptions extends Component {
           onRequestClose={ this.handleClose }
           autoScrollBodyContent={ true }
         >
-          <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">
+          <div>
             {
               this.props.subreddits.map(subreddit => (  
-                <RadioButton
+                <Checkbox
                   key={ subreddit.url }
                   value={ subreddit.url }
-                  label={ subreddit.url }
+                  label={ `${ subreddit.title }: ${ subreddit.description }`}
                   style={{ 'marginTop': 16 }}
                 />
               ))
             }
-          </RadioButtonGroup>
+          </div>
         </Dialog>
       </div>
     );
