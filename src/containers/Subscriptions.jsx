@@ -8,13 +8,16 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import Checkbox from 'material-ui/Checkbox';
+import TextField from 'material-ui/TextField';
 
 class Subscriptions extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      checkedItems: []
+      checkedItems: [],
+      query: '',
+      searchItems: []
     }
   }
 
@@ -31,6 +34,21 @@ class Subscriptions extends Component {
     this.props.dispatch(subscribeToSubreddit(url));
   }
 
+  handleChange(event) {
+    console.log(event.target.value);
+		this.setState({ query: event.target.value });
+	}
+
+  handleKeyPress(event) {
+		if (event.key === 'Enter' && this.state.query !== '') {
+      console.log(`query: ${ this.state.query }`);
+			this.setState(state => ({ 
+				query: '',
+				searchItems: [...state.searchItems, this.state.query]
+      }));
+		}
+	}
+
   renderLoading() {
     return (
       <p>Loading...</p>
@@ -38,6 +56,7 @@ class Subscriptions extends Component {
   }
 
   render() {
+    console.log(`searchItems: ${ this.state.searchItems }`);
     const actions = [
       <FlatButton
         label="Maybe later"
@@ -52,17 +71,36 @@ class Subscriptions extends Component {
       />,
     ];
 
+    const userInput = () => (
+      <span>
+        <TextField
+          hintText="I want ..."
+          value={ this.state.query }
+          onChange={ this.handleChange }
+          onKeyPress={ this.handleKeyPress } 
+        /><br />
+      </span>
+    )
+
     if (!this.props.subreddits) return this.renderLoading();
     return (
       <div className="Subscriptions">
         <Dialog
-          title="I want ..."
+          title="I want ... "
           actions={ actions }
           modal={ false }
           open={ this.props.renderSuggestions }
           onRequestClose={ this.handleClose }
           autoScrollBodyContent={ true }
+          autoDetectWindowHeight={ true }
+
         >
+          <TextField
+            hintText="I want ..."
+            value={ this.state.query }
+            onChange={ this.handleChange.bind(this) }
+            onKeyPress={ this.handleKeyPress.bind(this) } 
+          /><br />
           <div>
             {
               this.props.subreddits.map(subreddit => (  
