@@ -1,4 +1,4 @@
-import { FETCHED_SUBREDDITS, SUBSCRIBED_SUBREDDITS, RENDER_HOMEPAGE } from './types';
+import { FETCHED_SUBREDDITS, SUBSCRIBED_SUBREDDITS, RENDER_SUGGESTIONS } from './types';
 import redditService from '../../services/reddit';
 import { getSubscribedSubreddits } from '../reducers/selectors';
 import { fetchPosts } from './posts_action';
@@ -34,6 +34,6 @@ export function subscribeToSubreddit(url) {
   }
 }
 
-export function renderHomepage() {
-  return ({ type: RENDER_HOMEPAGE });
+export function renderSuggestions() {
+  return ({ type: RENDER_SUGGESTIONS });
 }

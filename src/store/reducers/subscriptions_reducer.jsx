@@ -1,10 +1,10 @@
-import { FETCHED_SUBREDDITS, SUBSCRIBED_SUBREDDITS, RENDER_HOMEPAGE } from '../actions/types';
+import { FETCHED_SUBREDDITS, SUBSCRIBED_SUBREDDITS, RENDER_SUGGESTIONS} from '../actions/types';
 import Immutable from 'seamless-immutable';
 
 const initialState = Immutable({
   subreddits: undefined,
   subscribedSubreddits: ['/r/news/'],
-  renderHomepage: false
+  renderSuggestions: true
 });
 
 export default(state = initialState, action = {}) => {
@@ -17,9 +17,9 @@ export default(state = initialState, action = {}) => {
       return state.merge({
         subscribedSubreddits: action.subscribedSubreddits
       });
-    case RENDER_HOMEPAGE:
+    case RENDER_SUGGESTIONS:
       return state.merge({
-        renderHomepage: true
+        renderSuggestions: !state.renderSuggestions
       });
     default:
       return state;

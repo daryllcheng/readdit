@@ -44,12 +44,7 @@ export default class DialogExampleScrollable extends React.Component {
     const radios = [];
     for (let i = 0; i < 30; i++) {
       radios.push(
-        <RadioButton
-          key={i}
-          value={`value${i + 1}`}
-          label={`Option ${i + 1}`}
-          style={styles.radioButton}
-        />
+
       );
     }
 

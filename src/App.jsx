@@ -6,9 +6,14 @@ import Home from './containers/Home';
 
 class App extends Component {
   render() {
+    console.log(this.props.renderSuggestions);
     return (
       <div className="App">
-        <Subscriptions />
+        {
+          this.props.renderSuggestions ?
+          <Subscriptions /> :
+          <div></div>
+        }
         <Home />
       </div>
     );
@@ -17,8 +22,9 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    isUserReady: Selectors.renderHomepage(state)
+    renderSuggestions: Selectors.renderSuggestions(state)
   };
 }
 
 export default connect(mapStateToProps)(App);
+

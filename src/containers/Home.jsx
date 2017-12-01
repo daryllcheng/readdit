@@ -14,17 +14,12 @@ class Home extends Component {
     this.props.dispatch(fetchPosts());
   }
 
-  renderLoading() {
-    return (
-      <p>Loading...</p>
-    )
-  }
-
   render() {
     const Grid = makeResponsive(measureItems(CSSGrid, { measureImages: true }), {
       maxWidth: 1920,
       minPadding: 20
     });
+    
     return (
       <div className="Home">
       {
@@ -39,17 +34,16 @@ class Home extends Component {
           duration={200}
           easing="ease-out"
         >
-        {
-          this.props.subredditPosts.map(post => (
-            <li key={ post.id }>
-              <Posttile post={ post }/>
-            </li>
-          ))
-        }
-      </Grid> :
-        this.renderLoading()
+          {
+            this.props.subredditPosts.map(post => (
+              <li key={ post.id }>
+                <Posttile post={ post }/>
+              </li>
+            ))
+          }
+        </Grid> :
+        <p>Loading...</p>
       }
-
       </div>
     );
   }

@@ -6,8 +6,8 @@ export function getSubreddits(state) {
   return state.subscriptions.subreddits;
 }
 
-export function renderHomepage(state) {
-  return state.subscriptions.renderHomepage;
+export function renderSuggestions(state) {
+  return state.subscriptions.renderSuggestions;
 }
 
 export function getPosts(state) {
