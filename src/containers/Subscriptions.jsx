@@ -13,6 +13,9 @@ class Subscriptions extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      checkedItems: []
+    }
   }
 
   componentDidMount() {
@@ -64,11 +67,11 @@ class Subscriptions extends Component {
             {
               this.props.subreddits.map(subreddit => (  
                 <Checkbox
-                  checked={ subreddit.checked }
                   key={ subreddit.url }
                   value={ subreddit.url }
                   label={ `${ subreddit.title }: ${ subreddit.description }`}
                   style={{ 'marginTop': 16 }}
+                  defaultChecked={ subreddit.checked }
                   onCheck={ () => this.handleCheck(subreddit.url) }
                 />
               ))
@@ -84,6 +87,7 @@ function mapStateToProps(state) {
   const subreddits = selectors.getSubreddits(state);
   return {
     subreddits,
+    subscribedSubreddits: selectors.getSubscribedSubreddits(state),
     renderSuggestions: selectors.renderSuggestions(state)
   }
 };

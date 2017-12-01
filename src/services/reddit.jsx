@@ -1,4 +1,3 @@
-import { getSubscribedSubredditUrls } from '../store/reducers/selectors';
 const REDDIT_ENDPOINT = 'https://www.reddit.com';
 
 class RedditService {
@@ -21,7 +20,7 @@ class RedditService {
       return {
         title: subreddit.data.display_name,
         description: subreddit.data.public_description,
-        url: subreddit.data.url,
+        url: subreddit.data.url
       }
     });
   }
@@ -38,17 +37,17 @@ class RedditService {
 
     const data = await response.json();
     const children  = data.data.children;
-
+    
     if (!children) throw new Error(`getPostsFromSubreddit Failed, children not returned`)
     return children.map(post => {
       const body = post.data.selftext;
       return {
         id: post.data.id,
         title: post.data.title,
-        subredditUrl: subredditUrl,
+        topicUrl: subredditUrl,
         body: body,
         thumbnail: post.data.thumnail,
-        url: !body ? post.data.url : undefined,
+        url: !body ? post.data.url : undefined
       }
     });
   }

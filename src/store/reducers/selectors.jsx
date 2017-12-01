@@ -1,5 +1,5 @@
-export function getSubscribedSubredditUrls(state) {
-  return state.subscriptions.subscribedSubredditUrls;
+export function getSubscribedSubreddits(state) {
+  return state.subscriptions.subscribedSubreddits;
 }
 
 export function getSubreddits(state) {

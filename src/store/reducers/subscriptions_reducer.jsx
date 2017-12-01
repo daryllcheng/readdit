@@ -3,7 +3,7 @@ import Immutable from 'seamless-immutable';
 
 const initialState = Immutable({
   subreddits: undefined,
-  subscribedSubredditUrls: ['/r/news/'],
+  subscribedSubreddits: ['/r/news/'],
   renderSuggestions: true
 });
 
@@ -15,7 +15,7 @@ export default(state = initialState, action = {}) => {
       });
     case SUBSCRIBED_SUBREDDITS:
       return state.merge({
-        subscribedSubredditUrls: action.subscribedSubredditUrls
+        subscribedSubreddits: action.subscribedSubreddits
       });
     case RENDER_SUGGESTIONS:
       return state.merge({
