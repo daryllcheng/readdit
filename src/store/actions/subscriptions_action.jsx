@@ -1,21 +1,14 @@
 import { FETCHED_SUBREDDITS, SUBSCRIBED_SUBREDDITS, RENDER_SUGGESTIONS } from './types';
 import redditService from '../../services/reddit';
-import { getSubscribedSubreddits, renderSuggestions } from '../reducers/selectors';
-import { fetchPosts } from './posts_action';
+import { getSubscribedSubreddits } from '../reducers/selectors';
 
 export function fetchSubreddits(query) {
   return async(dispatch, getState) => {
     try {
-      const temp = query ? await redditService.getSubredditSuggestions(query) :
+      const fetchedSubreddits = query ? await redditService.getSubredditSuggestions(query) :
       await redditService.getDefaultSubreddits();
       const subscribedSubreddits = getSubscribedSubreddits(getState());
-      // const subreddits = subredditArray.map(subreddit => subreddit.url);
-      const subreddits = temp.map(subreddit => {
-        return {
-          ...subreddit,
-        checked: subscribedSubreddits.indexOf(subreddit.url) !== -1 ? true : false}
-      });
-      console.log(subreddits);
+      const subreddits = fetchedSubreddits.filter(subreddit => subscribedSubreddits.indexOf(subreddit.url) === -1);
       dispatch({ type: FETCHED_SUBREDDITS, subreddits });
     } catch (error) {
       console.log(error);

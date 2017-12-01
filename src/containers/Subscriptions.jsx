@@ -5,8 +5,6 @@ import { fetchPosts } from '../store/actions/posts_action';
 import * as selectors from '../store/reducers/selectors';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import Checkbox from 'material-ui/Checkbox';
 import TextField from 'material-ui/TextField';
 
@@ -16,8 +14,7 @@ class Subscriptions extends Component {
 
     this.state = {
       checkedItems: [],
-      query: '',
-      searchItems: []
+      query: ''
     }
   }
 
@@ -35,17 +32,13 @@ class Subscriptions extends Component {
   }
 
   handleChange(event) {
-    console.log(event.target.value);
 		this.setState({ query: event.target.value });
 	}
 
   handleKeyPress(event) {
 		if (event.key === 'Enter' && this.state.query !== '') {
       this.props.dispatch(fetchSubreddits(this.state.query));
-			this.setState(state => ({ 
-				query: '',
-				searchItems: [...state.searchItems, this.state.query]
-      }));
+      this.setState({ query: '' })
 		}
 	}
 
@@ -56,7 +49,6 @@ class Subscriptions extends Component {
   }
 
   render() {
-    console.log(`searchItems: ${ this.state.searchItems }`);
     const actions = [
       <FlatButton
         label="Maybe later"
@@ -71,19 +63,7 @@ class Subscriptions extends Component {
       />,
     ];
 
-    const userInput = () => (
-      <span>
-        <TextField
-          hintText="..."
-          value={ this.state.query }
-          onChange={ this.handleChange }
-          onKeyPress={ this.handleKeyPress } 
-        /><br />
-      </span>
-    )
-
     if (!this.props.subreddits) return this.renderLoading();
-    console.log(`subscribedsubreddits: ${this.props.subscribedSubreddits }`);
     return (
       <div className="Subscriptions">
         <Dialog
@@ -97,13 +77,13 @@ class Subscriptions extends Component {
 
         >
           <TextField
-            hintText="I want ..."
+            hintText="..."
             value={ this.state.query }
             onChange={ this.handleChange.bind(this) }
             onKeyPress={ this.handleKeyPress.bind(this) } 
           /><br />
+          <div className="subscribedSubreddits">
           <h2>Subscribed</h2>
-          <div>
             {
               this.props.subscribedSubreddits ? this.props.subscribedSubreddits.map(subreddit => (  
                 <Checkbox
@@ -118,8 +98,8 @@ class Subscriptions extends Component {
               <p>Empty</p>
             }
           </div>
+          <div className="subredditSuggestions">
           <h2>More</h2>
-          <div>
             {
               this.props.subreddits.map(subreddit => (  
                 <Checkbox
