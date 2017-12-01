@@ -12,19 +12,27 @@ class Subscriptions extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      checkedItems: []
+    }
+
   }
 
   componentDidMount() {
     this.props.dispatch(fetchSubreddits());
   }
 
-  handleOpen = () => {
-    this.props.dispatch(toggleSuggestions());
-  };
-
   handleClose = () => {
     this.props.dispatch(toggleSuggestions());
   };
+
+  handleCheck(url) {
+    let updatedItems = this.state.checkedItems.indexOf(url) === -1 ?
+    [...this.state.checkedItems, url] : [...this.state.checkedItems].filter(item => item !== url);
+    this.setState(state => ({
+      checkedItems: updatedItems
+    }))
+  }
 
   renderLoading() {
     return (
@@ -48,7 +56,6 @@ class Subscriptions extends Component {
     ];
 
     if (!this.props.subreddits) return this.renderLoading();
-    console.log(this.props.renderSuggestions);
     return (
       <div className="Subscriptions">
         <Dialog
@@ -67,6 +74,7 @@ class Subscriptions extends Component {
                   value={ subreddit.url }
                   label={ `${ subreddit.title }: ${ subreddit.description }`}
                   style={{ 'marginTop': 16 }}
+                  onCheck={ () => this.handleCheck(subreddit.url) }
                 />
               ))
             }
