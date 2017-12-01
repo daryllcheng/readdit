@@ -41,7 +41,7 @@ class Subscriptions extends Component {
 
   handleKeyPress(event) {
 		if (event.key === 'Enter' && this.state.query !== '') {
-      console.log(`query: ${ this.state.query }`);
+      this.props.dispatch(fetchSubreddits(this.state.query));
 			this.setState(state => ({ 
 				query: '',
 				searchItems: [...state.searchItems, this.state.query]
@@ -74,7 +74,7 @@ class Subscriptions extends Component {
     const userInput = () => (
       <span>
         <TextField
-          hintText="I want ..."
+          hintText="..."
           value={ this.state.query }
           onChange={ this.handleChange }
           onKeyPress={ this.handleKeyPress } 
@@ -83,10 +83,11 @@ class Subscriptions extends Component {
     )
 
     if (!this.props.subreddits) return this.renderLoading();
+    console.log(`subscribedsubreddits: ${this.props.subscribedSubreddits }`);
     return (
       <div className="Subscriptions">
         <Dialog
-          title="I want ... "
+          title="Show me"
           actions={ actions }
           modal={ false }
           open={ this.props.renderSuggestions }
@@ -101,13 +102,30 @@ class Subscriptions extends Component {
             onChange={ this.handleChange.bind(this) }
             onKeyPress={ this.handleKeyPress.bind(this) } 
           /><br />
+          <h2>Subscribed</h2>
+          <div>
+            {
+              this.props.subscribedSubreddits ? this.props.subscribedSubreddits.map(subreddit => (  
+                <Checkbox
+                  key={ subreddit }
+                  value={ subreddit }
+                  label={ subreddit }
+                  style={{ 'marginTop': 16 }}
+                  defaultChecked={ true }
+                  onCheck={ () => this.handleCheck(subreddit) }
+                />
+              )) :
+              <p>Empty</p>
+            }
+          </div>
+          <h2>More</h2>
           <div>
             {
               this.props.subreddits.map(subreddit => (  
                 <Checkbox
                   key={ subreddit.url }
                   value={ subreddit.url }
-                  label={ `${ subreddit.title }: ${ subreddit.description }`}
+                  label={ subreddit.title }
                   style={{ 'marginTop': 16 }}
                   defaultChecked={ subreddit.checked }
                   onCheck={ () => this.handleCheck(subreddit.url) }

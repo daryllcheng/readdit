@@ -3,10 +3,11 @@ import redditService from '../../services/reddit';
 import { getSubscribedSubreddits, renderSuggestions } from '../reducers/selectors';
 import { fetchPosts } from './posts_action';
 
-export function fetchSubreddits() {
+export function fetchSubreddits(query) {
   return async(dispatch, getState) => {
     try {
-      const temp = await redditService.getDefaultSubreddits();
+      const temp = query ? await redditService.getSubredditSuggestions(query) :
+      await redditService.getDefaultSubreddits();
       const subscribedSubreddits = getSubscribedSubreddits(getState());
       // const subreddits = subredditArray.map(subreddit => subreddit.url);
       const subreddits = temp.map(subreddit => {

@@ -25,6 +25,28 @@ class RedditService {
     });
   }
 
+  async getSubredditSuggestions(query) {
+    const url = `${ REDDIT_ENDPOINT }/api/subreddits_by_topic.json?query=${ query }` ;
+    const response = await fetch(url, {
+      method: 'GET',
+      header: {
+        Accept: 'application/json'
+      }
+    });
+    if (!response.ok) throw new Error(`getSubredditSuggestions Failed, HTTP status ${ response.status }`);
+
+    const data = await response.json();
+
+    if (!data.length) throw new Error(`getSubredditSuggestions Failed, data not returned`)
+
+    return data.map(subreddit => {
+      return {
+        title: subreddit.name,
+        url: subreddit.path
+      }
+    });
+  }
+
   async getPostsFromSubreddit(subredditUrl) {
     const url = `${ REDDIT_ENDPOINT }${ subredditUrl }hot.json`;
     const response = await fetch(url, {
