@@ -14,7 +14,7 @@ const SubredditFilter = ({ subscribedSubreddits, currentFilter, onFilterSwitch }
       </a>
     )
   }
-console.log(subscribedSubreddits);
+
   return (
     <div>
       { renderFilter("all", "ALL") }

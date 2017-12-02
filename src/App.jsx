@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as Selectors from './store/reducers/selectors';
 import Subscriptions from './containers/Subscriptions';
-import Home from './containers/Home';
+import Posts from './containers/Posts';
 
 class App extends Component {
   render() {
@@ -13,7 +13,7 @@ class App extends Component {
           <Subscriptions /> :
           <div></div>
         }
-        <Home />
+        <Posts/>
       </div>
     );
   }

@@ -9,7 +9,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import SubredditFilter from '../components/SubredditFilter';
 
 
-class Home extends Component {
+class Posts extends Component {
   constructor(props) {
     super(props);
 
@@ -47,7 +47,7 @@ class Home extends Component {
     });
 
     return (
-      <div className="Home">
+      <div className="Posts">
         <RaisedButton label="Our Suggestions" onClick={ this.handleOpen } />
         <SubredditFilter 
           className="subredditFilter" 
@@ -97,4 +97,4 @@ function mapStateToProps(state) {
   }
 };
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Posts);
