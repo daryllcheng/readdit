@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import * as selectors from '../store/reducers/selectors';
 import { fetchPosts, switchFilter, selectPost } from '../store/actions/posts_action';
 import { toggleSuggestions, fetchSubreddits } from '../store/actions/subscriptions_action';
-import Posttile from '../components/Posttile';
+import PostTile from '../components/PostTile';
 import { CSSGrid, layout, makeResponsive, measureItems } from 'react-stonecutter';
 import RaisedButton from 'material-ui/RaisedButton';
 import SubredditFilter from '../components/SubredditFilter';
+import PostView from '../components/PostView';
 
 
 class Posts extends Component {
@@ -30,6 +31,7 @@ class Posts extends Component {
   }
 
   handleClick(postId) {
+    console.log(`clicked: ${postId}`)
     this.props.dispatch(selectPost(postId));
   }
 
@@ -56,6 +58,11 @@ class Posts extends Component {
           onFilterSwitch={ this.onFilterSwitch }
         />
         {
+          this.props.currentPost !== undefined ?
+          <PostView items={[1, 2, 3, 4]} post={ this.props.currentPost } onClick={ this.handleClick } />:
+          <div></div>
+        }
+        {
           this.props.subredditPosts && this.props.subredditPosts.length > 24 ?
           <Grid
             component="ul"
@@ -70,7 +77,7 @@ class Posts extends Component {
             {
               this.props.subredditPosts.map(post => (
                 <li key={ post.id }>
-                  <Posttile post={ post } onClick={ this.handleClick } />
+                  <PostTile post={ post } onClick={ this.handleClick } />
                 </li>
               ))
             }

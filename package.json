@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "animejs": "^2.2.0",
     "material-ui": "^0.19.4",
     "node-sass-chokidar": "0.0.3",
     "normalize-scss": "^7.0.0",
@@ -12,6 +13,7 @@
     "react-redux": "^5.0.6",
     "react-scripts": "1.0.17",
     "react-stonecutter": "^0.3.8",
+    "react-transition-group": "^2.2.1",
     "redux": "^3.7.2",
     "redux-form": "^7.2.0",
     "redux-thunk": "^2.2.0",

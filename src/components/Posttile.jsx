@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Posttile = ({ post, onClick }) => (
-  <div style={{width: '19em'}} onClick={ onClick(post.Id) }>
+const PostTile = ({ post, onClick }) => (
+  <div style={{width: '19em'}} onClick={ () => onClick(post.id) }>
     { post.title }
   </div>
 )
 
-export default Posttile;
+export default PostTile;

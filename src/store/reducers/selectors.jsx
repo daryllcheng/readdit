@@ -15,8 +15,6 @@ export function getPosts(state) {
   const currentFilter = state.posts.currentFilter;
   const subscribedSubreddits = getSubscribedSubreddits(state);
   if (subredditPosts === 'undefined') return subredditPosts;
-  console.log(`currentFilter: ${ currentFilter }`)
-  console.log(`filtered: ${ subredditPosts.filter( post => post.subredditUrl === currentFilter)}`)
   const postsArray = currentFilter === "all" ?
   subredditPosts :
   subredditPosts.filter(post => post.subredditUrl === currentFilter);
@@ -28,5 +26,7 @@ export function getCurrentFilter(state) {
 }
 
 export function getCurrentPost(state) {
-  return state.posts.subredditPosts[state.posts.currentPostId];
+  return state.posts.currentPostId !== "undefined" && state.posts.subredditPosts.length > 24 ? 
+  state.posts.subredditPosts.find(post => post.id === state.posts.currentPostId) :
+  "undefined"
 }
