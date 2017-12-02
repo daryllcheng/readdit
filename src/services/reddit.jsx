@@ -48,7 +48,7 @@ class RedditService {
   }
 
   async getPostsFromSubreddit(subredditUrl) {
-    const url = `${ REDDIT_ENDPOINT }${ subredditUrl }hot.json`;
+    const url = `${ REDDIT_ENDPOINT }${ subredditUrl }hot.json?limit=30`;
     const response = await fetch(url, {
       method: 'GET',
       header: {
@@ -66,10 +66,12 @@ class RedditService {
       return {
         id: post.data.id,
         title: post.data.title,
-        topicUrl: subredditUrl,
+        subredditUrl: subredditUrl,
         body: body,
         thumbnail: post.data.thumnail,
-        url: !body ? post.data.url : undefined
+        url: !body ? post.data.url : undefined,
+        upvotes: post.data.ups,
+        created: post.data.created
       }
     });
   }
