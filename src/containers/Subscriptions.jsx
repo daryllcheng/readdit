@@ -107,7 +107,6 @@ class Subscriptions extends Component {
                   value={ subreddit.url }
                   label={ subreddit.title }
                   style={{ 'marginTop': 16 }}
-                  defaultChecked={ subreddit.checked }
                   onCheck={ () => this.handleCheck(subreddit.url) }
                 />
               ))

@@ -1,6 +1,7 @@
 import { FETCHED_SUBREDDITS, SUBSCRIBED_SUBREDDITS, RENDER_SUGGESTIONS } from './types';
 import redditService from '../../services/reddit';
 import { getSubscribedSubreddits } from '../reducers/selectors';
+import { fetchPosts } from './posts_action';
 
 export function fetchSubreddits(query) {
   return async(dispatch, getState) => {
@@ -23,7 +24,9 @@ export function subscribeToSubreddit(url) {
     subscribedSubreddits.filter(subreddit => subreddit !== url) :
     [...subscribedSubreddits, url];
 
+    dispatch(fetchSubreddits());
     dispatch({ type: SUBSCRIBED_SUBREDDITS, subscribedSubreddits: newSubscribedSubreddits });
+    dispatch(fetchPosts());
   }
 }
 
