@@ -1,10 +1,11 @@
-import { FETCHED_POSTS, SWITCHED_FILTER, SELECTED_POST } from '../actions/types';
+import { FETCHED_POSTS, SWITCHED_FILTER, SELECTED_POST, FETCHED_COMMENTS } from '../actions/types';
 import Immutable from 'seamless-immutable';
 
 const initialState = Immutable({
-  subredditPosts: "undefined",
+  subredditPosts: undefined,
   currentFilter: "all",
-  currentPostId: undefined
+  currentPostId: undefined,
+  currentPostComments: undefined
 });
 
 export default (state = initialState, action = {}) => {
@@ -21,6 +22,10 @@ export default (state = initialState, action = {}) => {
       return state.merge({
         currentPostId: action.postId
       });
+    case FETCHED_COMMENTS:
+      return state.merge({
+        currentPostComments: action.currentPostComments
+      })
     default:
       return state;
   }

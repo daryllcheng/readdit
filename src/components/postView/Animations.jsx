@@ -1,6 +1,3 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import TransitionGroup from 'react-transition-group/TransitionGroup'
 import anime from 'animejs'
 
 let currentAnimation
@@ -17,7 +14,7 @@ const animationTimings = {
   cardStagger : 50
 }
 
-const animateIn = (gridContainer) => {
+export function animateIn(gridContainer) {
   clearCurrentAnimation()
   const cards = gridContainer.querySelectorAll('.card')
   currentAnimation = anime.timeline()
@@ -43,7 +40,7 @@ const animateIn = (gridContainer) => {
   })
 }
 
-const animateOut = (gridContainer, callback) => {
+export function animateOut(gridContainer, callback) {
   clearCurrentAnimation()
 
   const cards = gridContainer.querySelectorAll('.card')
@@ -66,38 +63,3 @@ const animateOut = (gridContainer, callback) => {
     offset: '-=200'
   })
 }
-
-class AnimatedGridContents extends React.Component {
-  componentDidAppear () {
-    animateIn(ReactDOM.findDOMNode(this))
-  }
-  componentDidEnter () {
-    animateIn(ReactDOM.findDOMNode(this))
-  }
-  close (callback) {
-    animateOut(ReactDOM.findDOMNode(this), callback)
-
-  }
-
-  render () {
-    return (
-      <div className='grid grid-to-animate' >
-        {this.props.items.map((item) => {
-          return <div className='card' key={item}>{item}</div>
-        })}
-        <button onClick={ () => this.close(() => this.props.onClick(undefined))}> Close </button>
-      </div>
-      )
-  }
-}
-
-const PostView = ({ onClick, items }) => {
-  return (
-    <TransitionGroup>
-      <AnimatedGridContents items={items} onClick={ onClick } key='AnimatedGridContents' />
-    </TransitionGroup>
-  )
-}
-
-
-export default PostView;

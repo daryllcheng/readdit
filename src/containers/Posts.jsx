@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as selectors from '../store/reducers/selectors';
-import { fetchPosts, switchFilter, selectPost } from '../store/actions/posts_action';
+import { fetchPosts, switchFilter, selectPost, fetchComments } from '../store/actions/posts_action';
 import { toggleSuggestions, fetchSubreddits } from '../store/actions/subscriptions_action';
 import PostTile from '../components/PostTile';
 import { CSSGrid, layout, makeResponsive, measureItems } from 'react-stonecutter';
 import RaisedButton from 'material-ui/RaisedButton';
 import SubredditFilter from '../components/SubredditFilter';
-import PostView from '../components/PostView';
+import PostView from '../components/postView/PostView';
+import TransitionGroup from 'react-transition-group/TransitionGroup'
 
 
 class Posts extends Component {
@@ -30,9 +31,9 @@ class Posts extends Component {
     this.props.dispatch(switchFilter(newFilter));
   }
 
-  handleClick(postId) {
-    console.log(`clicked: ${postId}`)
+  handleClick(postId, subredditUrl) {
     this.props.dispatch(selectPost(postId));
+    this.props.dispatch(fetchComments(subredditUrl, postId));
   }
 
   renderLoading() {
@@ -59,7 +60,9 @@ class Posts extends Component {
         />
         {
           this.props.currentPost !== undefined ?
-          <PostView items={[1, 2, 3, 4]} post={ this.props.currentPost } onClick={ this.handleClick } />:
+          <TransitionGroup>
+            <PostView post={ this.props.currentPost } comments={ this.props.currentPostComments } onClick={ this.handleClick } />
+          </TransitionGroup> :
           <div></div>
         }
         {
@@ -100,7 +103,8 @@ function mapStateToProps(state) {
     subredditPosts: selectors.getPosts(state),
     subscribedSubreddits: selectors.getSubscribedSubreddits(state),
     currentFilter: selectors.getCurrentFilter(state),
-    currentPost: selectors.getCurrentPost(state)
+    currentPost: selectors.getCurrentPost(state),
+    currentPostComments: selectors.getPostComments(state)
   }
 };
 

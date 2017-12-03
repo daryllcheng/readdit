@@ -4,3 +4,4 @@ export const RENDER_SUGGESTIONS = 'render_SUGGESTIONS';
 export const FETCHED_POSTS = 'fetched_posts';
 export const SWITCHED_FILTER = 'switched_filter';
 export const SELECTED_POST = 'selected_post';
+export const FETCHED_COMMENTS = "fetched_comments";

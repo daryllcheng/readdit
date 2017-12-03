@@ -68,10 +68,36 @@ class RedditService {
         title: post.data.title,
         subredditUrl: subredditUrl,
         body: body,
-        thumbnail: post.data.thumnail,
+        thumbnail: post.data.thumbnail,
         url: !body ? post.data.url : undefined,
         upvotes: post.data.ups,
         created: post.data.created
+      }
+    });
+  }
+
+  async getCommentsFromPost(subreddit, postId) {
+    const url = `${ REDDIT_ENDPOINT }${ subreddit }comments/${ postId }.json`;
+    const response = await fetch(url, {
+      method: 'GET',
+      header: {
+        Accept: 'application/json'
+      }
+    });
+    if (!response.ok) throw new Error(`getCommentsFromPost Failed, HTTP status ${ response.status }`);
+
+    const data = await response.json();
+    const children = data[1].data.children;
+
+    if (!data) throw new Error(`getCommentsFromPost Failed, children not returned`)
+    return children.map(comment => {
+      return {
+        replies: comment.data.replies,
+        author: comment.data.author,
+        stickied: comment.data.stickied,
+        gilded: comment.data.sticked,
+        score: comment.data.score,
+        body: comment.data.body
       }
     });
   }
