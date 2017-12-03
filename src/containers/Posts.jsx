@@ -33,7 +33,9 @@ class Posts extends Component {
 
   handleClick(postId, subredditUrl) {
     this.props.dispatch(selectPost(postId));
-    this.props.dispatch(fetchComments(subredditUrl, postId));
+    if (postId !== undefined) {
+      this.props.dispatch(fetchComments(subredditUrl, postId));
+    }
   }
 
   renderLoading() {
@@ -63,7 +65,7 @@ class Posts extends Component {
           <TransitionGroup>
             <PostView post={ this.props.currentPost } comments={ this.props.currentPostComments } onClick={ this.handleClick } />
           </TransitionGroup> :
-          <div></div>
+          <div />
         }
         {
           this.props.subredditPosts && this.props.subredditPosts.length > 24 ?

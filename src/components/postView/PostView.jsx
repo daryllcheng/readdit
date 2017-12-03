@@ -1,6 +1,5 @@
 import React , { Component } from 'react'
 import ReactDOM from 'react-dom'
-import TransitionGroup from 'react-transition-group/TransitionGroup'
 import { animateIn, animateOut } from './Animations';
 
 class PostView extends Component {
@@ -8,13 +7,13 @@ class PostView extends Component {
     super(props)
 
   }
-  componentDidAppear() {
+  
+  componentDidMount() {
     animateIn(ReactDOM.findDOMNode(this))
   }
 
   closeView(cb) {
     animateOut(ReactDOM.findDOMNode(this), cb)
-
   }
 
   render () {
