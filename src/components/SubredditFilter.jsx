@@ -1,28 +1,31 @@
 import React, { Component } from 'react';
+import { DropdownList } from 'react-widgets'
 
-const SubredditFilter = ({ subscribedSubreddits, currentFilter, onFilterSwitch }) => {
-  const renderFilter = (url, label)  => {
-    const className = currentFilter === url ? "selected" : undefined;
-    return (
-      <a 
-        href="#"
-        key={ url }
-        className={ className }
-        onClick={ () => onFilterSwitch(url) }
-      >
-      { label }
-      </a>
-    )
+class SubredditFilter extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selected: this.props.subscribedSubreddits[0]
+    }
   }
 
-  return (
-    <div>
-      { renderFilter("all", "ALL") }
-      {
-        subscribedSubreddits.map(subreddit => renderFilter(subreddit, subreddit))
-      }
-    </div>
-  )
+  handleChange(value) {
+    this.props.onFilterSwitch(value);
+    this.setState({
+      selected: value
+    })
+  }
+
+  render() {
+    return (
+      <DropdownList
+        value={ this.state.selected }
+        data={ [...this.props.subscribedSubreddits, "all"] }
+        onChange={ value => this.handleChange(value) }
+      />
+    )
+  }
 }
 
 export default SubredditFilter;
