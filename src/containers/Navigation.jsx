@@ -24,6 +24,7 @@ class Navigation extends Component {
   render() {
     return (
       <div className="Navigation">
+        <h1 className="logo">Reddit</h1>
         <RaisedButton label="subredditSuggestions" onClick={ () => this.handleOpen() } />
         <SubredditFilter 
           className="subredditFilter" 

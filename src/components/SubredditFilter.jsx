@@ -6,7 +6,7 @@ class SubredditFilter extends Component {
     super(props);
 
     this.state = {
-      selected: this.props.subscribedSubreddits[0]
+      selected: "all"
     }
   }
 

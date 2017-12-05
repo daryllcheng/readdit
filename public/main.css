@@ -705,9 +705,9 @@ input.rw-select-list-input {
 
 .App {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-areas: "header header header header header" "main main main main main main" "main main main main main main";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 20% 80%;
+  grid-template-areas: "header header" "main main";
   justify-items: center;
   padding: 20px; }
 
@@ -726,8 +726,7 @@ input.rw-select-list-input {
 
 .Posts {
   grid-area: main;
-  padding: 10px;
-  margin-top: 10%; }
+  padding: 10px; }
 
 .card {
   background-color: #3F51B5;
@@ -757,7 +756,17 @@ input.rw-select-list-input {
   max-width: 600px; }
 
 .Navigation {
-  grid-area: header; }
+  grid-area: header;
+  display: grid;
+  grid-template-rows: 80% 10% 10%;
+  grid-template-areas: "logo" "addSubreddits" "filter";
+  justify-items: center; }
+  .Navigation .subredditFilter {
+    grid-area: filter; }
+  .Navigation .subredditSuggestions {
+    grid-area: addSubreddits; }
+  .Navigation .logo {
+    grid-area: logo; }
 
 .postTile {
   width: 19em; }
