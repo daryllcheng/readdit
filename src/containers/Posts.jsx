@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as selectors from '../store/reducers/selectors';
-import { fetchPosts, switchFilter, selectPost, fetchComments } from '../store/actions/posts_action';
-import { toggleSuggestions, fetchSubreddits } from '../store/actions/subscriptions_action';
+import { fetchPosts, selectPost, fetchComments } from '../store/actions/posts_action';
+import { fetchSubreddits } from '../store/actions/subscriptions_action';
 import PostTile from '../components/PostTile';
 import { CSSGrid, layout, makeResponsive, measureItems } from 'react-stonecutter';
-import RaisedButton from 'material-ui/RaisedButton';
-import SubredditFilter from '../components/SubredditFilter';
 import PostView from '../components/postView/PostView';
 import TransitionGroup from 'react-transition-group/TransitionGroup'
 
@@ -15,7 +13,6 @@ class Posts extends Component {
   constructor(props) {
     super(props);
 
-    this.onFilterSwitch = this.onFilterSwitch.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -23,19 +20,15 @@ class Posts extends Component {
     this.props.dispatch(fetchPosts());
   }
 
-  handleOpen = () => {
-    this.props.dispatch(toggleSuggestions());
-  };
-
-  onFilterSwitch(newFilter) {
-    this.props.dispatch(switchFilter(newFilter));
-  }
-
   handleClick(postId, subredditUrl) {
     this.props.dispatch(selectPost(postId));
     if (postId !== undefined) {
       this.props.dispatch(fetchComments(subredditUrl, postId));
     }
+  }
+
+  handleHover() {
+
   }
 
   renderLoading() {
@@ -53,13 +46,6 @@ class Posts extends Component {
 
     return (
       <div className="Posts">
-        <RaisedButton label="Our Suggestions" onClick={ this.handleOpen } />
-        <SubredditFilter 
-          className="subredditFilter" 
-          subscribedSubreddits={ this.props.subscribedSubreddits } 
-          currentFilter={ this.props.currentFilter } 
-          onFilterSwitch={ this.onFilterSwitch }
-        />
         {
           this.props.currentPost !== undefined ?
           <TransitionGroup>
@@ -81,8 +67,12 @@ class Posts extends Component {
           >
             {
               this.props.subredditPosts.map(post => (
-                <li key={ post.id }>
-                  <PostTile post={ post } onClick={ this.handleClick } />
+                <li 
+                  key={ post.id }
+                  onClick={ () => this.handleClick(post.id, post.subredditUrl) }
+                  onHover={ () => this.handleHover() }
+                >
+                  <PostTile post={ post } />
                 </li>
               ))
             }
@@ -92,19 +82,12 @@ class Posts extends Component {
       </div>
     );
   }
-
-  renderLoading() {
-    return (
-      <p>Loading...</p>
-    );
-  }
 }
 
 function mapStateToProps(state) {
   return {
     subredditPosts: selectors.getPosts(state),
     subscribedSubreddits: selectors.getSubscribedSubreddits(state),
-    currentFilter: selectors.getCurrentFilter(state),
     currentPost: selectors.getCurrentPost(state),
     currentPostComments: selectors.getPostComments(state)
   }

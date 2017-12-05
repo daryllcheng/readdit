@@ -1,7 +1,7 @@
 import React from 'react';
 
-const PostTile = ({ post, onClick }) => (
-  <div style={{width: '19em'}} onClick={ () => onClick(post.id, post.subredditUrl) }>
+const PostTile = ({ post }) => (
+  <div className="postTile">
     { post.title }
   </div>
 )

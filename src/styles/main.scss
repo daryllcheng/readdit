@@ -9,10 +9,11 @@
   "base/base";
 
 @import 
+  "layout/application",
   "layout/dialog",
   "layout/grid",
-  "layout/header",
-  "layout/thread";
+  "layout/thread",
+  "layout/navigation";
 
 @import 
   "components/buttons",

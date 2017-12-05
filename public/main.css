@@ -1,3 +1,29 @@
+.App {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas: "header header header header header" "main main main main main main" "main main main main main main";
+  justify-items: center;
+  padding: 20px; }
+
+.dialog {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 20% auto;
+  grid-template-areas: "textfield textfield" "suggestions subscribed";
+  justify-items: center; }
+  .dialog .dialogTextField {
+    grid-area: textfield; }
+  .dialog .subscribedSubreddits {
+    grid-area: subscribed; }
+  .dialog .subredditSuggestions {
+    grid-area: suggestions; }
+
+.Posts {
+  grid-area: main;
+  padding: 10px;
+  margin-top: 10%; }
+
 .card {
   background-color: #3F51B5;
   margin-right: 1rem;
@@ -24,3 +50,9 @@
   padding-bottom: 0;
   padding-right: 0;
   max-width: 600px; }
+
+.Navigation {
+  grid-area: header; }
+
+.postTile {
+  width: 19em; }

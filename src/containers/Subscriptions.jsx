@@ -76,7 +76,9 @@ class Subscriptions extends Component {
           autoDetectWindowHeight={ true }
 
         >
+        <div className="dialog">
           <TextField
+            className="dialogTextField"
             hintText="..."
             value={ this.state.query }
             onChange={ this.handleChange.bind(this) }
@@ -99,7 +101,7 @@ class Subscriptions extends Component {
             }
           </div>
           <div className="subredditSuggestions">
-          <h2>More</h2>
+          <h2>Subreddits</h2>
             {
               this.props.subreddits.map(subreddit => (  
                 <Checkbox
@@ -111,6 +113,7 @@ class Subscriptions extends Component {
                 />
               ))
             }
+          </div>
           </div>
         </Dialog>
       </div>
