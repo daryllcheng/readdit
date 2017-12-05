@@ -48,7 +48,7 @@ class Posts extends Component {
       <div className="Posts">
         {
           this.props.currentPost !== undefined ?
-          <TransitionGroup>
+          <TransitionGroup className="thread">
             <PostView post={ this.props.currentPost } comments={ this.props.currentPostComments } onClick={ this.handleClick } />
           </TransitionGroup> :
           <div />
