@@ -7,11 +7,26 @@
   .postTitle {
     padding: 5px;
     color: white;
+    transition: .2s ease;
+    opacity: 0;
   }
 
   .postOverlay {
+    background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0));
     height: 100%;
     width: 100%;
+    transition: .5s ease;
+    opacity: 0;
+  }
+
+  &:hover {
+    .postTitle {
+      opacity: 1;
+    }
+
+    .postOverlay {
+      opacity: 1;
+    }
   }
 
 }

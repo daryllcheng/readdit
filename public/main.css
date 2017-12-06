@@ -781,7 +781,16 @@ input.rw-select-list-input {
   background-repeat: no-repeat; }
   .postTile .postTitle {
     padding: 5px;
-    color: white; }
+    color: white;
+    transition: .2s ease;
+    opacity: 0; }
   .postTile .postOverlay {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), transparent);
     height: 100%;
-    width: 100%; }
+    width: 100%;
+    transition: .5s ease;
+    opacity: 0; }
+  .postTile:hover .postTitle {
+    opacity: 1; }
+  .postTile:hover .postOverlay {
+    opacity: 1; }
