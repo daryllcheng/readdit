@@ -67,8 +67,9 @@ class Posts extends Component {
                   onClick={ () => this.handleClick(post.id, post.subredditUrl) }
                 >
                   <PostTile 
-                    title={ post.title.length > 70 ? `${ post.title.slice(0, 70) }...` : post.title }
+                    title={ post.title.length > 150 ? `${ post.title.slice(0, 150) }...` : post.title }
                     thumbnail={ post.preview ? post.preview : `assets/defaultPreview.jpg`}
+                    overlayClassname={ post.preview == "" ? "textOverlay" : "imageOverlay" }
                   />
                 </li>
               ))

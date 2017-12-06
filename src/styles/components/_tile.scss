@@ -4,27 +4,36 @@
   background-size: cover;
   background-repeat: no-repeat;
 
-  .postTitle {
-    padding: 5px;
-    color: white;
-    transition: .2s ease;
-    opacity: 0;
-  }
-
-  .postOverlay {
-    background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0));
+  .imageOverlay, .textOverlay {
     height: 100%;
     width: 100%;
     transition: .5s ease;
-    opacity: 0;
+
+    .postTitle {
+      padding: 10px;
+      color: white;
+      transition: .2s ease;
+    }
   }
+
+  .imageOverlay {
+    opacity: 0;
+    background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0));
+  }
+
+  .textOverlay {
+    background: none;
+  }
+
+
+
 
   &:hover {
     .postTitle {
       opacity: 1;
     }
 
-    .postOverlay {
+    .imageOverlay {
       opacity: 1;
     }
   }

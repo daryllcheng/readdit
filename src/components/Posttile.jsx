@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-const PostTile = ({ title, thumbnail }) => (
+const PostTile = ({ title, thumbnail, overlayClassname }) => (
   <div className="postTile" style={{ backgroundImage: `url(${ thumbnail })` }}>
-    <div className="postOverlay">
+    <div className={ overlayClassname }>
       <div className="postTitle">
         { title }
       </div> 

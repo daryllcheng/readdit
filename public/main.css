@@ -779,18 +779,20 @@ input.rw-select-list-input {
   height: 8em;
   background-size: cover;
   background-repeat: no-repeat; }
-  .postTile .postTitle {
-    padding: 5px;
-    color: white;
-    transition: .2s ease;
-    opacity: 0; }
-  .postTile .postOverlay {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), transparent);
+  .postTile .imageOverlay, .postTile .textOverlay {
     height: 100%;
     width: 100%;
-    transition: .5s ease;
-    opacity: 0; }
+    transition: .5s ease; }
+    .postTile .imageOverlay .postTitle, .postTile .textOverlay .postTitle {
+      padding: 10px;
+      color: white;
+      transition: .2s ease; }
+  .postTile .imageOverlay {
+    opacity: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), transparent); }
+  .postTile .textOverlay {
+    background: none; }
   .postTile:hover .postTitle {
     opacity: 1; }
-  .postTile:hover .postOverlay {
+  .postTile:hover .imageOverlay {
     opacity: 1; }
