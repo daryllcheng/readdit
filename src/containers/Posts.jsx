@@ -6,8 +6,7 @@ import { fetchSubreddits } from '../store/actions/subscriptions_action';
 import PostTile from '../components/PostTile';
 import { CSSGrid, layout, makeResponsive, measureItems } from 'react-stonecutter';
 import PostView from '../components/postView/PostView';
-import TransitionGroup from 'react-transition-group/TransitionGroup'
-
+import TransitionGroup from 'react-transition-group/TransitionGroup';
 
 class Posts extends Component {
   constructor(props) {
@@ -25,10 +24,6 @@ class Posts extends Component {
     if (postId !== undefined) {
       this.props.dispatch(fetchComments(subredditUrl, postId));
     }
-  }
-
-  handleHover() {
-
   }
 
   renderLoading() {
@@ -70,9 +65,11 @@ class Posts extends Component {
                 <li 
                   key={ post.id }
                   onClick={ () => this.handleClick(post.id, post.subredditUrl) }
-                  onHover={ () => this.handleHover() }
                 >
-                  <PostTile post={ post } />
+                  <PostTile 
+                    title={ post.title.length > 70 ? `${ post.title.slice(0, 70) }...` : post.title }
+                    thumbnail={ post.thumbnail ? post.thumbnail : `assets/redditThumbnail.png`}
+                  />
                 </li>
               ))
             }

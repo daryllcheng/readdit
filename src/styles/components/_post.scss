@@ -1,0 +1,17 @@
+.postTile {
+  width: 19em;
+  height: 8em;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  .postTitle {
+    padding: 5px;
+    color: white;
+  }
+
+  .postOverlay {
+    height: 100%;
+    width: 100%;
+  }
+
+}

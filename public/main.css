@@ -727,6 +727,8 @@ input.rw-select-list-input {
 .Posts {
   grid-area: main;
   padding: 10px; }
+  .Posts li {
+    list-style: none; }
 
 .thread {
   display: grid;
@@ -773,4 +775,13 @@ input.rw-select-list-input {
     grid-area: logo; }
 
 .postTile {
-  width: 19em; }
+  width: 19em;
+  height: 8em;
+  background-size: cover;
+  background-repeat: no-repeat; }
+  .postTile .postTitle {
+    padding: 5px;
+    color: white; }
+  .postTile .postOverlay {
+    height: 100%;
+    width: 100%; }
