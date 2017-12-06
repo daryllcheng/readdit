@@ -1,3 +1,4 @@
+import ProcessPreview from './utilities';
 const REDDIT_ENDPOINT = 'https://www.reddit.com';
 
 class RedditService {
@@ -68,7 +69,7 @@ class RedditService {
         title: post.data.title,
         subredditUrl: subredditUrl,
         body: body,
-        thumbnail: post.data.thumbnail,
+        preview: post.data.preview ? ProcessPreview(post.data.preview) : "",
         url: !body ? post.data.url : undefined,
         upvotes: post.data.ups,
         created: post.data.created

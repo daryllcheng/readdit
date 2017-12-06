@@ -68,7 +68,7 @@ class Posts extends Component {
                 >
                   <PostTile 
                     title={ post.title.length > 70 ? `${ post.title.slice(0, 70) }...` : post.title }
-                    thumbnail={ post.thumbnail ? post.thumbnail : `assets/redditThumbnail.png`}
+                    thumbnail={ post.preview ? post.preview : `assets/defaultPreview.jpg`}
                   />
                 </li>
               ))
