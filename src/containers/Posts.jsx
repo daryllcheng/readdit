@@ -68,8 +68,8 @@ class Posts extends Component {
                 >
                   <PostTile 
                     title={ post.title.length > 150 ? `${ post.title.slice(0, 150) }...` : post.title }
-                    thumbnail={ post.preview ? post.preview : `assets/defaultPreview.jpg`}
-                    overlayClassname={ post.preview == "" ? "textOverlay" : "imageOverlay" }
+                    thumbnail={ post.preview === "" ? `assets/defaultPreview.jpg` : post.preview}
+                    overlayClassname={ post.preview === "" ? "textOverlay" : "imageOverlay" }
                   />
                 </li>
               ))

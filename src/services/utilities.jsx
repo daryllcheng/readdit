@@ -1,9 +1,12 @@
-const ProcessPreview = (input) => {
-  let res = input.images[0].resolutions;
-  let url = res.length <= 2 ? res[res.length - 1].url : res[2].url;
-  let temp = document.createElement("textarea");
-  temp.innerHTML = url;
-  return temp.value;
+const ProcessPreview = (res) => {
+  if (res.length >= 1) {
+    let url = res[res.length - 1].url;
+    let temp = document.createElement("textarea");
+    temp.innerHTML = url;
+    return temp.value;
+  } else {
+    return "";
+  }
 }
 
 export default ProcessPreview;

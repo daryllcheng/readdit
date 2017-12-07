@@ -64,12 +64,13 @@ class RedditService {
     if (!children) throw new Error(`getPostsFromSubreddit Failed, children not returned`)
     return children.map(post => {
       const body = post.data.selftext;
+      const res = post.data.preview ? ProcessPreview(post.data.preview.images[0].resolutions) : "";
       return {
         id: post.data.id,
         title: post.data.title,
         subredditUrl: subredditUrl,
         body: body,
-        preview: post.data.preview ? ProcessPreview(post.data.preview) : "",
+        preview: res,
         url: !body ? post.data.url : undefined,
         upvotes: post.data.ups,
         created: post.data.created
