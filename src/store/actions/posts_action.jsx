@@ -29,7 +29,8 @@ export function selectPost(postId) {
 export function fetchComments(subreddit, postId) {
   return async(dispatch, getState) => {
     try {
-      const currentPostComments = await redditService.getCommentsFromPost(subreddit, postId);
+      const postComments = await redditService.getCommentsFromPost(subreddit, postId);
+      const currentPostComments = postComments.sort((a, b) => a.score < b.score);
       dispatch({ type: FETCHED_COMMENTS, currentPostComments });
     } catch (error) {
       console.error(error);

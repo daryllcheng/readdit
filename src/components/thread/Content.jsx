@@ -6,7 +6,7 @@ import ReactStars from 'react-stars'
 const Content = ({ content, closeView, onClick }) => (
   <ScrollArea
     speed={ 0.8 }
-    className="threadContent threadComponent"
+    className="threadComponent"
     contentClassName="content"
     horizontal={ false }
   >
@@ -17,8 +17,10 @@ const Content = ({ content, closeView, onClick }) => (
         <h2>{ content.title }</h2>
       </div>
       <div className="postInfo">
-        <span>{ `${ timeago().format(new Date(content.created*1000).toLocaleString()) } in ${ content.subredditUrl } by ${ content.author }` }</span>
-        <span className="upvotes">{ content.upvotes }</span>
+        <span className="timeAgo">{ timeago().format(new Date(content.created*1000).toLocaleString()) }</span>
+        <span className="subredditUrl">{` in ${ content.subredditUrl } by `}</span>
+        <span className="author">{ content.author }</span>
+        <span className="pill">{ content.upvotes }</span>
         {
           content.gilded ? 
           <ReactStars count={ content.gilded } value={ content.gilded } color2={ '#ffd700' } edit={ false }/> :

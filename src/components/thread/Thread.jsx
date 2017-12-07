@@ -14,7 +14,7 @@ class Thread extends Component {
   componentDidMount() {
     animateIn(ReactDOM.findDOMNode(this))
   }
-  
+
   closeView(cb) {
     animateOut(ReactDOM.findDOMNode(this), cb)
   }
@@ -22,14 +22,14 @@ class Thread extends Component {
   render () {
     return (
       <div className="threadContainer" >
-        <div>
+        <div className="threadContent">
           <Content 
             content={ this.props.post } 
             closeView={ this.closeView } 
             onClick={ this.props.onClick } 
           />
         </div>
-        <div>
+        <div className="threadComments">
         {
           this.props.comments ? 
           <Comments comments={ this.props.comments } /> :

@@ -5,7 +5,7 @@ import Comment from './Comment';
 const Comments = ({ comments })=> (
   <ScrollArea
     speed={ 0.8 }
-    className="threadComments threadComponent"
+    className="threadComponent"
     contentClassName="content"
     horizontal={ false }
   >
@@ -13,9 +13,7 @@ const Comments = ({ comments })=> (
     <div className="Comments">
       {
         comments.map(comment => (
-          <div className="comment" key={ comment.score }>
-            <Comment comment={ comment } />
-          </div>
+          <Comment key={ comment.created }comment={ comment } />
         ))
       }
     </div>
