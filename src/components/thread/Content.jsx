@@ -12,7 +12,9 @@ const Content = ({ content, closeView, onClick }) => (
   >
   { 
     <div>
-      <button className="threadButton" onClick={ () => closeView(() => onClick(undefined))}> Close </button>
+      <div onClick={ () => closeView(() => onClick(undefined))} style={{ "fontSize": "2em", "color": "Tomato" }}>
+        <i className="fas fa-times-circle"></i>
+      </div>
       <div className="contentTitle">
         <h2>{ content.title }</h2>
       </div>
@@ -30,7 +32,9 @@ const Content = ({ content, closeView, onClick }) => (
       <div>
         {
           content.url ?
-          <a href={ content.url } target="_blank">Source</a> :
+          <a href={ content.url } target="_blank">
+            <i className="fas fa-link"></i>
+          </a> :
           <div/>
         }
       </div>
