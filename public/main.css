@@ -724,20 +724,27 @@ input.rw-select-list-input {
   .dialog .subredditSuggestions {
     grid-area: suggestions; }
 
-.Posts {
-  grid-area: main;
-  padding: 10px; }
-  .Posts li {
-    list-style: none; }
+.grid {
+  grid-area: grid; }
 
-.thread {
+.threadContainer {
+  grid-area: thread;
   display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 100%;
-  grid-template-areas: "postView";
-  justify-items: center;
-  padding: 10%; }
-  .thread .card {
+  grid-template-columns: 50% 50%;
+  grid-template-areas: "content comments";
+  margin: 0 10px;
+  height: 500px;
+  border: black 1px solid; }
+  .threadContainer .threadContent {
+    grid-area: content;
+    height: 450px;
+    padding: 20px; }
+    .threadContainer .threadContent .contentImage {
+      max-height: 300px;
+      max-width: 95%; }
+  .threadContainer .threadComments {
+    grid-area: comments; }
+  .threadContainer .card {
     background-color: #3F51B5;
     margin-right: 1rem;
     margin-bottom: 1rem;
@@ -750,11 +757,11 @@ input.rw-select-list-input {
     color: white;
     border: 0;
     border-radius: 0; }
-  .thread .grid-to-animate {
+  .threadContainer .grid-to-animate {
     background-color: #6279ff;
     display: block;
     max-width: 600px; }
-  .thread .grid {
+  .threadContainer .grid {
     display: flex;
     flex-wrap: wrap;
     padding: 1rem;
@@ -773,6 +780,16 @@ input.rw-select-list-input {
     grid-area: addSubreddits; }
   .Navigation .logo {
     grid-area: logo; }
+
+.Posts {
+  grid-area: main;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 90% 10%;
+  grid-template-areas: "thread" "grid";
+  padding: 10px; }
+  .Posts li {
+    list-style: none; }
 
 .postTile {
   width: 19em;

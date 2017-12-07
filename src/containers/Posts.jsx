@@ -5,7 +5,7 @@ import { fetchPosts, selectPost, fetchComments } from '../store/actions/posts_ac
 import { fetchSubreddits } from '../store/actions/subscriptions_action';
 import PostTile from '../components/PostTile';
 import { CSSGrid, layout, makeResponsive, measureItems } from 'react-stonecutter';
-import PostView from '../components/postView/PostView';
+import Thread from '../components/thread/Thread';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 
 class Posts extends Component {
@@ -43,38 +43,40 @@ class Posts extends Component {
       <div className="Posts">
         {
           this.props.currentPost !== undefined ?
-          <TransitionGroup className="thread">
-            <PostView post={ this.props.currentPost } comments={ this.props.currentPostComments } onClick={ this.handleClick } />
+          <TransitionGroup>
+            <Thread post={ this.props.currentPost } comments={ this.props.currentPostComments } onClick={ this.handleClick } />
           </TransitionGroup> :
           <div />
         }
         {
           this.props.subredditPosts && this.props.subredditPosts.length > 24 ?
-          <Grid
-            component="ul"
-            columns={5}
-            columnWidth={315}
-            gutterWidth={5}
-            gutterHeight={15}
-            layout={layout.pinterest}
-            duration={200}
-            easing="ease-out"
-          >
-            {
-              this.props.subredditPosts.map(post => (
-                <li 
-                  key={ post.id }
-                  onClick={ () => this.handleClick(post.id, post.subredditUrl) }
-                >
-                  <PostTile 
-                    title={ post.title.length > 150 ? `${ post.title.slice(0, 150) }...` : post.title }
-                    thumbnail={ post.preview === "" ? `assets/defaultPreview.jpg` : post.preview}
-                    overlayClassname={ post.preview === "" ? "textOverlay" : "imageOverlay" }
-                  />
-                </li>
-              ))
-            }
-          </Grid> :
+          <div className="grid">
+            <Grid
+              component="ul"
+              columns={5}
+              columnWidth={315}
+              gutterWidth={5}
+              gutterHeight={15}
+              layout={layout.pinterest}
+              duration={200}
+              easing="ease-out"
+            >
+              {
+                this.props.subredditPosts.map(post => (
+                  <li 
+                    key={ post.id }
+                    onClick={ () => this.handleClick(post.id, post.subredditUrl) }
+                  >
+                    <PostTile 
+                      title={ post.title.length > 150 ? `${ post.title.slice(0, 150) }...` : post.title }
+                      thumbnail={ post.preview === "" ? `assets/defaultPreview.jpg` : post.preview}
+                      overlayClassname={ post.preview === "" ? "textOverlay" : "imageOverlay" }
+                    />
+                  </li>
+                ))
+              }
+            </Grid>
+          </div> :
           <p>Select a few subreddits!</p>
         }
       </div>

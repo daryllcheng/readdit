@@ -1,12 +1,30 @@
-.thread {
+.threadContainer {
+  grid-area: thread;
   display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 100%;
+  grid-template-columns: 50% 50%;
   grid-template-areas: 
-    "postView";
+    "content comments";
+    
+  margin: 0 10px;
+  height: 500px;
+  border: black 1px solid;
   
-  justify-items: center;
-  padding: 10%;
+    .threadContent {
+      grid-area: content;
+      height: 450px;
+      padding: 20px;
+
+      .contentImage {
+        max-height: 300px;
+        max-width: 95%;
+      }
+      
+    }
+
+    .threadComments {
+      grid-area: comments;
+    }
+
 
   .card {
     background-color: #3F51B5;

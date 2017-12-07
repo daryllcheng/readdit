@@ -16,7 +16,7 @@ const animationTimings = {
 
 export function animateIn(gridContainer) {
   clearCurrentAnimation()
-  const cards = gridContainer.querySelectorAll('.card')
+  const cards = gridContainer.querySelectorAll('.threadComponent')
   currentAnimation = anime.timeline()
   .add({
     targets: cards,
@@ -43,7 +43,7 @@ export function animateIn(gridContainer) {
 export function animateOut(gridContainer, callback) {
   clearCurrentAnimation()
 
-  const cards = gridContainer.querySelectorAll('.card')
+  const cards = gridContainer.querySelectorAll('.threadComponent')
   currentAnimation = anime.timeline()
   .add({
     targets: cards,
