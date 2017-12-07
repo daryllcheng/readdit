@@ -29,7 +29,7 @@ class Thread extends Component {
             onClick={ this.props.onClick } 
           />
         </div>
-        <div className="threadComments threadComponent">
+        <div>
         {
           this.props.comments ? 
           <Comments comments={ this.props.comments } /> :

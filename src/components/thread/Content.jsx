@@ -3,10 +3,10 @@ import ScrollArea from 'react-scrollbar';
 
 const Content = ({ content, closeView, onClick }) => (
   <ScrollArea
-    speed={0.8}
+    speed={ 0.8 }
     className="threadContent threadComponent"
     contentClassName="content"
-    horizontal={false}
+    horizontal={ false }
   >
   { 
     <div>

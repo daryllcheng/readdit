@@ -8,11 +8,14 @@
   margin: 0 10px;
   height: 500px;
   border: black 1px solid;
+
+  .threadComponent {
+    height: 450px;
+    padding: 20px;
+  }
   
     .threadContent {
       grid-area: content;
-      height: 450px;
-      padding: 20px;
 
       .contentImage {
         max-height: 300px;

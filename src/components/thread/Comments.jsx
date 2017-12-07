@@ -1,18 +1,26 @@
 import React from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import ScrollArea from 'react-scrollbar';
+import Comment from './Comment';
 
 const Comments = ({ comments })=> (
-
+  <ScrollArea
+    speed={ 0.8 }
+    className="threadComments threadComponent"
+    contentClassName="content"
+    horizontal={ false }
+  >
+   {
     <div className="Comments">
       {
-        comments.slice(1, 5).map(comment => (
-          <div className="comment" key={ comment.author }>
-            <p>{ comment.author }</p>
+        comments.map(comment => (
+          <div className="comment" key={ comment.score }>
+            <Comment comment={ comment } />
           </div>
         ))
       }
     </div>
-
+   }
+  </ScrollArea>
 )
 
 export default Comments;

@@ -735,10 +735,11 @@ input.rw-select-list-input {
   margin: 0 10px;
   height: 500px;
   border: black 1px solid; }
-  .threadContainer .threadContent {
-    grid-area: content;
+  .threadContainer .threadComponent {
     height: 450px;
     padding: 20px; }
+  .threadContainer .threadContent {
+    grid-area: content; }
     .threadContainer .threadContent .contentImage {
       max-height: 300px;
       max-width: 95%; }
