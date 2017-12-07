@@ -8,7 +8,7 @@ const clearCurrentAnimation = () => {
 
 const animationTimings = {
   gridEnter : 1200,
-  gridLeave : 600,
+  gridLeave : 10,
   cardEnter : 300,
   cardLeave : 100,
   cardStagger : 50

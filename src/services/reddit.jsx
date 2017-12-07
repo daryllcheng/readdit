@@ -68,12 +68,14 @@ class RedditService {
       return {
         id: post.data.id,
         title: post.data.title,
+        author: post.data.author,
         subredditUrl: subredditUrl,
         body: body,
         preview: res,
-        url: !body ? post.data.url : undefined,
+        url: post.data.url,
         upvotes: post.data.ups,
-        created: post.data.created
+        created: post.data.created_utc,
+        gilded: post.data.gilded
       }
     });
   }

@@ -1,6 +1,6 @@
 import React , { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { animateIn, animateOut } from './Animations';
+import { animateIn, animateOut, animateUpdates } from './Animations';
 import Comments from './Comments';
 import Content from './Content';
 
@@ -14,7 +14,7 @@ class Thread extends Component {
   componentDidMount() {
     animateIn(ReactDOM.findDOMNode(this))
   }
-
+  
   closeView(cb) {
     animateOut(ReactDOM.findDOMNode(this), cb)
   }

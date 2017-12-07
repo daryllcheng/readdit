@@ -15,13 +15,15 @@
     "react-redux": "^5.0.6",
     "react-scripts": "1.0.17",
     "react-scrollbar": "^0.5.1",
+    "react-stars": "^2.2.5",
     "react-stonecutter": "^0.3.8",
     "react-transition-group": "^2.2.1",
     "react-widgets": "^4.1.1",
     "redux": "^3.7.2",
     "redux-form": "^7.2.0",
     "redux-thunk": "^2.2.0",
-    "seamless-immutable": "^7.1.2"
+    "seamless-immutable": "^7.1.2",
+    "timeago.js": "^3.0.2"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/styles/main.scss -o public/",
