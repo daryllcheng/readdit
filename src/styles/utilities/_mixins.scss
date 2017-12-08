@@ -1,0 +1,28 @@
+@mixin breakpoint($point) {
+  @if $point ==  medium {
+	    @media (min-width: 1024px)  { @content; }
+  	}
+	@else if $point ==  small {
+		@media (min-width: 640px)  { @content; }
+	}
+	@else if $point ==  mobile {
+		@media (min-width: 360px)  { @content; }
+	}
+}
+
+@mixin capsule($component) {
+  @if $component == content {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-right: 4px solid $richBlack;
+  }
+  @else if $component == comments {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+  }
+  height: 450px;
+  border-radius: 80px;
+  &:hover {
+    background: $mintCream;
+  }
+}

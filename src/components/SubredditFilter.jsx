@@ -20,6 +20,7 @@ class SubredditFilter extends Component {
   render() {
     return (
       <DropdownList
+        className="subredditFilter"
         value={ this.state.selected }
         data={ [...this.props.subscribedSubreddits, "all"] }
         onChange={ value => this.handleChange(value) }

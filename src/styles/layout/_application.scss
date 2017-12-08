@@ -1,12 +1,12 @@
 .App {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   grid-template-rows: 20% 80%;
   grid-template-areas:
-    "header header"
-    "main main";
+    "nav"
+    "post";
   
   justify-items: center;
-  padding: 20px;
+  align-items: center;
+
 
 }

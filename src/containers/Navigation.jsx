@@ -27,7 +27,6 @@ class Navigation extends Component {
         <h1 className="logo">Reddit</h1>
         <RaisedButton label="subredditSuggestions" onClick={ () => this.handleOpen() } />
         <SubredditFilter 
-          className="subredditFilter" 
           subscribedSubreddits={ this.props.subscribedSubreddits } 
           currentFilter={ this.props.currentFilter } 
           onFilterSwitch={ this.onFilterSwitch }

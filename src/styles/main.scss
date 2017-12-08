@@ -11,13 +11,13 @@
 @import 
   "layout/application",
   "layout/dialog",
-  "layout/grid",
-  "layout/thread",
   "layout/navigation",
   "layout/post";
 
 @import 
+  "components/thread",
   "components/buttons",
   "components/filter",
   "components/comments",
-  "components/tile";
+  "components/tile",
+  "components/content";

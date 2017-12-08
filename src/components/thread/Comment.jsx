@@ -11,7 +11,7 @@ const Comment = ({ comment })=> (
       {
         comment.gilded ? 
         <ReactStars count={ comment.gilded } value={ comment.gilded } color2={ '#ffd700' } edit={ false }/> :
-        <span />
+        <div />
       }
     </div>
     <div className="commentBody">

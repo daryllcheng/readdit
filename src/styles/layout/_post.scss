@@ -1,17 +1,40 @@
 .Posts {
-  grid-area: main;
+  grid-area: post;
   display: grid;
-  grid-template-columns: 100%;
   grid-template-rows: 90% 10%;
   grid-template-areas: 
     "thread"
     "grid";
   
-
   padding: 10px;
-  li {
-    list-style: none
+
+  .threadContainer {
+    grid-area: thread;
+    display: grid;
+    grid-template-areas: 
+      "content" 
+      "comments";
+    
+    .threadContent {
+      grid-area: content;
+    }
+
+    .threadComments {
+      grid-area: comments;
+    }
+
+    @include breakpoint(medium) {
+      grid-template-columns: 50% 50%;
+      grid-template-areas: 
+        "content comments"; 
+    }
   }
+
+  .grid {
+    grid-area: grid;
+  }
+
+
 
   
 }
