@@ -1,4 +1,13 @@
-.subredditFilter {
-  max-width: 200px;
-  margin-bottom: 20px;
+.filter {
+  .subredditFilter {
+    max-width: 200px;
+    margin-bottom: 20px;
+  }
+
+  .fa-filter {
+    font-size: 2em;
+    color: $brightOrange;
+    margin-right: 10px;
+  }
+
 }

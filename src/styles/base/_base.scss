@@ -3,7 +3,13 @@ html, body {
   overflow-x: hidden;
   margin: 5px;
   
+  
   .App {
+    font-family: $sans-serif;
+    h1, h2, h3 {
+      font-family: $serif;
+    }
+
     li {
       list-style: none
     }

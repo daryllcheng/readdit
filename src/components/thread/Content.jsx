@@ -38,13 +38,11 @@ const Content = ({ content, closeView, onClick }) => (
           <div/>
         }
       </div>
-      <div>
         {
           content.preview ?
           <img src={ content.preview } className="contentImage" /> :
           <div/>
         }
-      </div>
       <div className="contentBody">
         <p>{ content.body }</p>
       </div>

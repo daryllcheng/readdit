@@ -25,12 +25,19 @@ class Navigation extends Component {
     return (
       <div className="Navigation">
         <h1 className="logo">Reddit</h1>
-        <RaisedButton label="subredditSuggestions" onClick={ () => this.handleOpen() } />
-        <SubredditFilter 
-          subscribedSubreddits={ this.props.subscribedSubreddits } 
-          currentFilter={ this.props.currentFilter } 
-          onFilterSwitch={ this.onFilterSwitch }
-        />
+        <div label="subredditSuggestions" onClick={ () => this.handleOpen() }>
+          <i className="fas fa-plus-circle"></i>
+        </div>
+        <span className="filter">
+          <span className="filterIcon">
+            <i className="fas fa-filter"></i>
+          </span>
+          <SubredditFilter 
+            subscribedSubreddits={ this.props.subscribedSubreddits } 
+            currentFilter={ this.props.currentFilter } 
+            onFilterSwitch={ this.onFilterSwitch }
+          />
+        </span>
       </div>
     );
   }
