@@ -51,9 +51,9 @@ class Subscriptions extends Component {
   render() {
     const actions = [
       <FlatButton
-        label="Maybe later"
+        label="Popular Subreddits"
         primary={ true }
-        onClick={ this.handleClose }
+        onClick={ () => this.props.dispatch(fetchSubreddits()) }
       />,
       <FlatButton
         label="Let's Go!"
@@ -67,7 +67,7 @@ class Subscriptions extends Component {
     return (
       <div className="Subscriptions">
         <Dialog
-          title="Show me"
+          title="Subreddits"
           actions={ actions }
           modal={ false }
           open={ this.props.renderSuggestions }
@@ -79,7 +79,7 @@ class Subscriptions extends Component {
         <div className="dialog">
           <TextField
             className="dialogTextField"
-            hintText="..."
+            hintText="Search by topic..."
             value={ this.state.query }
             onChange={ this.handleChange.bind(this) }
             onKeyPress={ this.handleKeyPress.bind(this) } 

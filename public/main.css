@@ -755,7 +755,6 @@ html, body {
   display: grid;
   grid-template-rows: 90% 10%;
   grid-template-areas: "thread" "grid";
-  padding: 10px;
   align-items: center; }
   .Posts .threadContainer {
     grid-area: thread;
@@ -838,10 +837,14 @@ html, body {
   margin-right: 10px; }
 
 .postTile {
-  width: 19em;
-  height: 8em;
+  width: 22em;
+  height: 10em;
   background-size: cover;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  margin: 5px 2px; }
+  @media (min-width: 640px) {
+    .postTile {
+      width: 19em; } }
   .postTile .imageOverlay, .postTile .textOverlay {
     height: 100%;
     width: 100%;

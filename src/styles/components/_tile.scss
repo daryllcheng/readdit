@@ -1,8 +1,14 @@
 .postTile {
-  width: 19em;
-  height: 8em;
+  width: 22em;
+  height: 10em;
   background-size: cover;
   background-repeat: no-repeat;
+  margin: 5px 2px;
+
+  @include breakpoint(small) {
+    width: 19em;
+  }
+
 
   .imageOverlay, .textOverlay {
     height: 100%;

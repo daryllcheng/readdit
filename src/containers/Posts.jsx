@@ -7,6 +7,7 @@ import PostTile from '../components/PostTile';
 import { CSSGrid, layout, makeResponsive, measureItems } from 'react-stonecutter';
 import Thread from '../components/thread/Thread';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
+import ScrollToTop from "react-scroll-up";
 
 class Posts extends Component {
   constructor(props) {
@@ -20,8 +21,11 @@ class Posts extends Component {
   }
 
   handleClick(postId, subredditUrl) {
-    this.props.dispatch(selectPost(postId));
-    if (postId !== undefined) {
+    let vscroll = document.body.scrollTop;
+    console.log(`windowheight: ${ vscroll}`)
+    document.getElementById("scrollToTop").click();
+    if (vscroll === 0 && postId !== undefined) {
+      this.props.dispatch(selectPost(postId));
       this.props.dispatch(fetchComments(subredditUrl, postId));
     }
   }
@@ -79,6 +83,12 @@ class Posts extends Component {
           </div> :
           <p>Select a few subreddits!</p>
         }
+        <ScrollToTop 
+          showUnder={ 160 }
+          duration={ 500 }
+        >
+          <span id="scrollToTop">UP</span>
+        </ScrollToTop>
       </div>
     );
   }

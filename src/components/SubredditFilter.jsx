@@ -26,6 +26,7 @@ class SubredditFilter extends Component {
         value={ this.state.selected }
         onChange={ this.handleChange }
         className="subredditFilter"
+        
       >
         {
           [ ...this.props.subscribedSubreddits, "all"].map(subreddit => (
