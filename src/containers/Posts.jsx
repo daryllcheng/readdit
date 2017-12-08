@@ -21,13 +21,13 @@ class Posts extends Component {
   }
 
   handleClick(postId, subredditUrl) {
-    let vscroll = document.body.scrollTop;
-    console.log(`windowheight: ${ vscroll}`)
     document.getElementById("scrollToTop").click();
-    if (vscroll === 0 && postId !== undefined) {
-      this.props.dispatch(selectPost(postId));
-      this.props.dispatch(fetchComments(subredditUrl, postId));
-    }
+    setTimeout(() => {
+      if (postId !== undefined) {
+        this.props.dispatch(selectPost(postId));
+        this.props.dispatch(fetchComments(subredditUrl, postId));
+      }
+    }, 1000);
   }
 
   renderLoading() {
