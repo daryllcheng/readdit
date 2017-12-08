@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { DropdownList } from 'react-widgets'
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton';
 
 class SubredditFilter extends Component {
   constructor(props) {
@@ -10,7 +13,7 @@ class SubredditFilter extends Component {
     }
   }
 
-  handleChange(value) {
+  handleChange = (event, index, value) => {
     this.props.onFilterSwitch(value);
     this.setState({
       selected: value
@@ -19,12 +22,21 @@ class SubredditFilter extends Component {
 
   render() {
     return (
-      <DropdownList
-        className="subredditFilter"
+      <DropDownMenu 
         value={ this.state.selected }
-        data={ [...this.props.subscribedSubreddits, "all"] }
-        onChange={ value => this.handleChange(value) }
-      />
+        onChange={ this.handleChange }
+        className="subredditFilter"
+      >
+        {
+          [ ...this.props.subscribedSubreddits, "all"].map(subreddit => (
+            <MenuItem 
+              value={ subreddit } 
+              key={ subreddit } 
+              primaryText={ subreddit } 
+            />
+          ))
+        }
+      </DropDownMenu>
     )
   }
 }

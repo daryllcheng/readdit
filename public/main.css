@@ -744,14 +744,7 @@ html, body {
   grid-template-areas: "logo" "addSubreddits" "filter";
   justify-items: center; }
   .Navigation .filter {
-    grid-area: filter;
-    display: grid;
-    grid-template-columns: 20% 80%;
-    grid-template-areas: "icon dropdown"; }
-    .Navigation .filter .fa-filter {
-      grid-area: icon; }
-    .Navigation .filter .subredditFilter {
-      grid-area: dropdown; }
+    grid-area: filter; }
   .Navigation .subredditSuggestions {
     grid-area: addSubreddits; }
   .Navigation .logo {
@@ -836,7 +829,7 @@ html, body {
   margin-right: 10px; }
 
 .filter .subredditFilter {
-  max-width: 200px;
+  max-width: 500px;
   margin-bottom: 20px; }
 
 .filter .fa-filter {

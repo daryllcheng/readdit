@@ -10,18 +10,7 @@
   justify-items: center;
   .filter {
     grid-area: filter;
-    display: grid;
-    grid-template-columns: 20% 80%;
-    grid-template-areas: 
-      "icon dropdown";
 
-    .fa-filter {
-      grid-area: icon;
-    }
-
-    .subredditFilter {
-      grid-area: dropdown;
-    }
   }
 
   .subredditSuggestions {

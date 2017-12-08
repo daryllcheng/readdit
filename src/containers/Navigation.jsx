@@ -29,9 +29,6 @@ class Navigation extends Component {
           <i className="fas fa-plus-circle"></i>
         </div>
         <span className="filter">
-          <span className="filterIcon">
-            <i className="fas fa-filter"></i>
-          </span>
           <SubredditFilter 
             subscribedSubreddits={ this.props.subscribedSubreddits } 
             currentFilter={ this.props.currentFilter } 
