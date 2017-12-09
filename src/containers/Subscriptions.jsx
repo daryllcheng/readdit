@@ -15,7 +15,8 @@ class Subscriptions extends Component {
 
     this.state = {
       checkedItems: [],
-      query: ''
+      query: '',
+      errorText: ""
     }
   }
 
@@ -42,6 +43,32 @@ class Subscriptions extends Component {
       this.setState({ query: '' })
 		}
 	}
+
+  handlePathSearch(event) {
+    let url = event.target.value;
+    if (event.key === "Enter") {
+      if (this.handleError(url)) {
+        this.props.dispatch(subscribeToSubreddit(url));
+        this.setState({ errorText: "" })
+      }
+    }
+  }
+
+  handleError(input) {
+    if (input.length < 4) {
+      this.setState({ errorText: "Please enter a valid path" })
+      return false;
+    } else if (input[input.length - 1] !== "/" ) {
+      this.setState({ errorText: "Remember to end with a forward slash" })
+      return false;
+    } else if (input.slice(0, 3) !== "/r/") {
+      this.setState({ errorText: "Remember to start with /r/" })
+      return false;
+    } else {
+      this.setState({ errorText: "" })
+      return true;
+    }
+  }
 
   renderLoading() {
     return (
@@ -80,11 +107,22 @@ class Subscriptions extends Component {
         >
         <div className="dialog">
           <TextField
-            className="dialogTextField"
-            hintText="Search by topic..."
+            className="topicTextField"
+            floatingLabelText="Search by topic (e.g. basketball)"
+            floatingLabelFixed={ true }
+            hintText="basketball"
             value={ this.state.query }
             onChange={ this.handleChange.bind(this) }
             onKeyPress={ this.handleKeyPress.bind(this) } 
+          /><br />
+          <TextField
+            className="subredditTextField"
+            hintText="Search by subreddit url"
+            floatingLabelText="or enter exact path (e.g. /r/nba/)"
+            floatingLabelFixed={ true }
+            errorText={ this.state.errorText }
+            defaultValue="/r/"
+            onKeyPress={ this.handlePathSearch.bind(this) } 
           /><br />
           <div className="subscribedSubreddits">
           <h2>Subscribed</h2>

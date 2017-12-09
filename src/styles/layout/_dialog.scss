@@ -1,15 +1,20 @@
 .dialog {
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-rows: 20% auto;
+  grid-template-rows: 20% 20% auto;
   grid-template-areas:
-    "textfield textfield"
+    "topicTextField topicTextField"
+    "subredditTextField subredditTextField"
     "suggestions subscribed";
   
   justify-items: center;
   
-  .dialogTextField {
-    grid-area: textfield;
+  .topicTextField {
+    grid-area: topicTextField;
+  }
+
+  .subredditTextField {
+    grid-area: subredditTextField;
   }
 
   .subscribedSubreddits{
@@ -18,6 +23,15 @@
 
   .subredditSuggestions {
     grid-area: suggestions;
+  }
+
+  @include breakpoint(medium) {
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 20% auto;
+    grid-template-areas:
+    "topicTextField subredditTextField"
+    "suggestions subscribed";
+  
   }
 
 
