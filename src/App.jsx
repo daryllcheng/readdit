@@ -9,6 +9,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div className="background" style={{ backgroundImage: "url(assets/dust_scratches.png)" }} />
         <Navigation />
         {
           this.props.renderSuggestions ?

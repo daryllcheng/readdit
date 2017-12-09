@@ -11,6 +11,16 @@ html, body {
       font-family: "Playfair Display", serif; }
     html .App li, body .App li {
       list-style: none; }
+    html .App .background, body .App .background {
+      width: 100%;
+      position: fixed;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      top: 0;
+      left: 0;
+      overflow: overlay;
+      z-index: -99; }
 
 .App {
   display: grid;
@@ -129,14 +139,14 @@ html, body {
       height: 450px;
       border-radius: 80px; }
       .threadContainer .threadContent:hover {
-        background: #F7FFF7; }
+        background: #FFFFFF; }
     .threadContainer .threadComments {
       border-top-left-radius: 0 !important;
       border-bottom-left-radius: 0 !important;
       height: 450px;
       border-radius: 80px; }
       .threadContainer .threadComments:hover {
-        background: #F7FFF7; } }
+        background: #FFFFFF; } }
 
 .fa-plus-circle {
   font-size: 2em;

@@ -117,7 +117,7 @@ class Subscriptions extends Component {
           /><br />
           <TextField
             className="subredditTextField"
-            hintText="Search by subreddit url"
+            hintText="/r/"
             floatingLabelText="or enter exact path (e.g. /r/nba/)"
             floatingLabelFixed={ true }
             errorText={ this.state.errorText }
