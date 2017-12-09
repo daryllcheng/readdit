@@ -13,7 +13,7 @@ const Content = ({ content, closeView, onClick }) => (
   { 
     <div>
       <div onClick={ () => closeView(() => onClick(undefined))} style={{ "fontSize": "2em", "color": "Tomato" }}>
-        <i className="fas fa-times-circle"></i>
+        <i className="fas fa-times-circle pulsate"></i>
       </div>
       <div className="contentTitle">
         <h2>{ content.title }</h2>
@@ -33,7 +33,7 @@ const Content = ({ content, closeView, onClick }) => (
         {
           content.url ?
           <a href={ content.url } target="_blank">
-            <i className="fas fa-link"></i>
+            <i className="fas fa-link pulsate"></i>
           </a> :
           <div/>
         }

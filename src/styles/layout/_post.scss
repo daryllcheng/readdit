@@ -8,6 +8,7 @@
   
  
   align-items: center;
+  justify-items: center;
   
   .threadContainer {
     grid-area: thread;
@@ -15,7 +16,7 @@
     grid-template-areas: 
       "content" 
       "comments";
-    
+
     .threadContent {
       grid-area: content;
     }
@@ -28,6 +29,9 @@
       grid-template-columns: 50% 50%;
       grid-template-areas: 
         "content comments"; 
+      
+      margin: 0px 100px;
+      justify-self: center;
 
     }
   }

@@ -755,7 +755,8 @@ html, body {
   display: grid;
   grid-template-rows: 90% 10%;
   grid-template-areas: "thread" "grid";
-  align-items: center; }
+  align-items: center;
+  justify-items: center; }
   .Posts .threadContainer {
     grid-area: thread;
     display: grid;
@@ -767,7 +768,9 @@ html, body {
     @media (min-width: 1024px) {
       .Posts .threadContainer {
         grid-template-columns: 50% 50%;
-        grid-template-areas: "content comments"; } }
+        grid-template-areas: "content comments";
+        margin: 0px 100px;
+        justify-self: center; } }
   .Posts .grid {
     grid-area: grid;
     justify-self: center; }
@@ -828,9 +831,45 @@ html, body {
   color: #E55934;
   margin-right: 10px; }
 
+.fa-arrow-circle-up {
+  font-size: 2em;
+  color: #5BC0EB; }
+
+.fa-times-circle {
+  margin-left: 5px;
+  margin-top: 5px; }
+
+.fa-link {
+  margin: 5px; }
+
+.pulsate {
+  -webkit-transition: all .3s ease;
+  /* Safari and Chrome */
+  -moz-transition: all .3s ease;
+  /* Firefox */
+  -o-transition: all .3s ease;
+  /* IE 9 */
+  -ms-transition: all .3s ease;
+  /* Opera */
+  transition: all .3s ease;
+  cursor: pointer; }
+  .pulsate:hover {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0) scale(1.2);
+    /* Safari and Chrome */
+    -moz-transform: scale(1.2);
+    /* Firefox */
+    -ms-transform: scale(1.2);
+    /* IE 9 */
+    -o-transform: translatZ(0) scale(1.2);
+    /* Opera */
+    transform: translatZ(0) scale(1.2); }
+
 .filter .subredditFilter {
   max-width: 500px;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  margin-top: 10px; }
 
 .filter .fa-filter {
   font-size: 2em;
@@ -842,7 +881,8 @@ html, body {
   height: 10em;
   background-size: cover;
   background-repeat: no-repeat;
-  margin: 5px 2px; }
+  margin: 5px 2px;
+  cursor: pointer; }
   @media (min-width: 640px) {
     .postTile {
       width: 19em; } }

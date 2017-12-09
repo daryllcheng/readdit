@@ -22,7 +22,9 @@ class Posts extends Component {
   }
 
   handleClick(postId, subredditUrl) {
-    if (window.pageYOffset < 200 && postId !== undefined) {
+    if (postId === undefined) {
+      this.props.dispatch(selectPost(postId));
+    } else if (window.pageYOffset < 200 && postId !== undefined) {
       this.props.dispatch(selectPost(postId));
       this.props.dispatch(fetchComments(subredditUrl, postId));
     } else {

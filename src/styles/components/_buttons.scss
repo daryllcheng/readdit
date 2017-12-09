@@ -3,3 +3,22 @@
     color: $brightOrange;
     margin-right: 10px;
   }
+
+  .fa-arrow-circle-up {
+    font-size: 2em;
+    color: $babyBlue;
+  }
+
+  .fa-times-circle  {
+    margin-left: 5px;
+    margin-top: 5px;
+  }
+
+  .fa-link {
+    margin: 5px;
+  }
+
+  .pulsate {
+    @include pulsate;
+    cursor: pointer;
+  }
