@@ -1,12 +1,13 @@
 .Navigation {
   grid-area: nav;
   display: grid;
-  grid-template-rows: 80% 10% 10%;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
   grid-template-areas:
-    "logo"
-    "addSubreddits"
-    "filter";
+    "logo addSubreddits"
+    "logo filter";
   
+  margin-top: 30px;
   justify-items: center;
   .filter {
     grid-area: filter;
@@ -15,6 +16,7 @@
 
   .subredditSuggestions {
     grid-area: addSubreddits;
+    padding-top: 20px;
   }
 
   .logo {

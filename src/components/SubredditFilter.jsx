@@ -27,7 +27,8 @@ class SubredditFilter extends Component {
         onChange={ this.handleChange }
         autoWidth={ true }
         animated={ true}
-        className="subredditFilter"   
+        className="subredditFilter"
+        labelStyle={{ color: "#5BC0EB" }}   
       >
         {
           [ ...this.props.subscribedSubreddits, "all"].map(subreddit => (

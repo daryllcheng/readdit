@@ -712,7 +712,7 @@ html, body {
   margin: 5px; }
   html .App, body .App {
     font-family: "Raleway", sans-serif; }
-    html .App h1, html .App h2, html .App h3, body .App h1, body .App h2, body .App h3 {
+    html .App h1, html .App .dialogTitle, html .App h2, html .App h3, body .App h1, body .App .dialogTitle, body .App h2, body .App h3 {
       font-family: "Playfair Display", serif; }
     html .App li, body .App li {
       list-style: none; }
@@ -737,16 +737,23 @@ html, body {
   .dialog .subredditSuggestions {
     grid-area: suggestions; }
 
+.dialogTitle {
+  font-weight: bold;
+  font-size: 1.5em; }
+
 .Navigation {
   grid-area: nav;
   display: grid;
-  grid-template-rows: 80% 10% 10%;
-  grid-template-areas: "logo" "addSubreddits" "filter";
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  grid-template-areas: "logo addSubreddits" "logo filter";
+  margin-top: 30px;
   justify-items: center; }
   .Navigation .filter {
     grid-area: filter; }
   .Navigation .subredditSuggestions {
-    grid-area: addSubreddits; }
+    grid-area: addSubreddits;
+    padding-top: 20px; }
   .Navigation .logo {
     grid-area: logo; }
 
@@ -796,6 +803,9 @@ html, body {
 
 .threadContainer .threadComponent .author {
   color: #5BC0EB; }
+
+.threadContainer .threadComponent .subredditUrl {
+  color: #E76F51; }
 
 .threadContainer .threadComponent .contentImage {
   max-height: 300px;

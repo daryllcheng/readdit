@@ -24,8 +24,10 @@ class Navigation extends Component {
   render() {
     return (
       <div className="Navigation">
-        <h1 className="logo">Reddit</h1>
-        <div label="subredditSuggestions" onClick={ () => this.handleOpen() }>
+        <div className="logo">
+          <img style={{ height: "100px" }} src="assets/redditLogo.svg" label="redditLogo"/>
+        </div>
+        <div className="subredditSuggestions" onClick={ () => this.handleOpen() }>
           <i className="fas fa-plus-circle pulsate"></i>
         </div>
         <span className="filter">

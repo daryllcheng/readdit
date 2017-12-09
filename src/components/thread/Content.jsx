@@ -20,7 +20,9 @@ const Content = ({ content, closeView, onClick }) => (
       </div>
       <div className="postInfo">
         <span className="timeAgo">{ timeago().format(new Date(content.created*1000).toLocaleString()) }</span>
-        <span className="subredditUrl">{` in ${ content.subredditUrl } by `}</span>
+        <span>{ ` in ` }</span>
+        <span className="subredditUrl">{ content.subredditUrl }</span>
+        <span>{ ` by ` }</span>
         <span className="author">{ content.author }</span>
         <span className="pill">{ content.upvotes }</span>
         {

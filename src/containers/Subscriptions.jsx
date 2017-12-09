@@ -70,6 +70,7 @@ class Subscriptions extends Component {
           title="Subreddits"
           actions={ actions }
           modal={ false }
+          titleStyle={{ "font-weight": "bold", "font-size": "30px", color: "rgba(0, 0, 0, 0.6)", "text-align": "center" }}
           open={ this.props.renderSuggestions }
           onRequestClose={ this.handleClose }
           autoScrollBodyContent={ true }
