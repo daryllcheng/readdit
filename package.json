@@ -20,7 +20,6 @@
     "react-stars": "^2.2.5",
     "react-stonecutter": "^0.3.8",
     "react-transition-group": "^2.2.1",
-    "react-widgets": "^4.1.1",
     "redux": "^3.7.2",
     "redux-form": "^7.2.0",
     "redux-thunk": "^2.2.0",

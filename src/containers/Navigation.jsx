@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import * as selectors from '../store/reducers/selectors';
 import {  switchFilter } from '../store/actions/posts_action';
 import { toggleSuggestions } from '../store/actions/subscriptions_action';
-import RaisedButton from 'material-ui/RaisedButton';
 import SubredditFilter from '../components/SubredditFilter';
 
 class Navigation extends Component {
@@ -25,7 +24,7 @@ class Navigation extends Component {
     return (
       <div className="Navigation">
         <div className="logo">
-          <img style={{ height: "100px" }} src="assets/redditLogo.svg" label="redditLogo"/>
+          <img style={{ height: "100px" }} src="assets/redditLogo.svg" alt="redditLogo"/>
         </div>
         <div className="subredditSuggestions" onClick={ () => this.handleOpen() }>
           <i className="fas fa-plus-circle pulsate"></i>

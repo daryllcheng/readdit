@@ -7,6 +7,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import Checkbox from 'material-ui/Checkbox';
 import TextField from 'material-ui/TextField';
+import { PulseLoader } from 'halogenium';
 
 class Subscriptions extends Component {
   constructor(props) {
@@ -44,8 +45,8 @@ class Subscriptions extends Component {
 
   renderLoading() {
     return (
-      <p>Loading...</p>
-    )
+      <PulseLoader color="#E55934" size="30px" margin="4px"/>
+    );
   }
 
   render() {
@@ -70,7 +71,7 @@ class Subscriptions extends Component {
           title="Subreddits"
           actions={ actions }
           modal={ false }
-          titleStyle={{ "font-weight": "bold", "font-size": "30px", color: "rgba(0, 0, 0, 0.6)", "text-align": "center" }}
+          titleStyle={{ "fontWeight": "bold", "fontSize": "30px", color: "rgba(0, 0, 0, 0.6)", "textAlign": "center" }}
           open={ this.props.renderSuggestions }
           onRequestClose={ this.handleClose }
           autoScrollBodyContent={ true }

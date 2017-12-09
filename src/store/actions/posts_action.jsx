@@ -1,4 +1,4 @@
-import { getSubscribedSubreddits, getCurrentPost } from '../reducers/selectors';
+import { getSubscribedSubreddits } from '../reducers/selectors';
 import redditService from '../../services/reddit';
 import { FETCHED_POSTS, SWITCHED_FILTER, SELECTED_POST, FETCHED_COMMENTS } from './types';
 

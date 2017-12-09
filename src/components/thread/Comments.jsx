@@ -13,7 +13,7 @@ const Comments = ({ comments })=> (
     <div className="Comments">
       {
         comments.map(comment => (
-          <Comment key={ comment.created }comment={ comment } />
+          <Comment key={ comment.id }comment={ comment } />
         ))
       }
     </div>

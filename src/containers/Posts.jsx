@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as selectors from '../store/reducers/selectors';
 import { fetchPosts, selectPost, fetchComments } from '../store/actions/posts_action';
-import { fetchSubreddits } from '../store/actions/subscriptions_action';
 import PostTile from '../components/PostTile';
 import { CSSGrid, layout, makeResponsive, measureItems } from 'react-stonecutter';
 import Thread from '../components/thread/Thread';
@@ -85,7 +84,10 @@ class Posts extends Component {
               }
             </Grid>
           </div> :
-          <p>Select a few subreddits!</p>
+          <div>
+            <h2>Please select a few subreddits...</h2>
+            <img src="assets/emptySubreddits.png" alt="emptySubreddits" />
+          </div>
         }
         <ScrollToTop 
           showUnder={ 160 }

@@ -13,7 +13,6 @@ export function renderSuggestions(state) {
 export function getPosts(state) {
   const subredditPosts = state.posts.subredditPosts;
   const currentFilter = state.posts.currentFilter;
-  const subscribedSubreddits = getSubscribedSubreddits(state);
   if (subredditPosts === undefined) return subredditPosts;
   const postsArray = currentFilter === "all" ?
   subredditPosts :

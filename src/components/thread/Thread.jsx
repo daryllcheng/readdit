@@ -1,6 +1,6 @@
 import React , { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { animateIn, animateOut, animateUpdates } from './Animations';
+import { animateIn, animateOut } from './Animations';
 import Comments from './Comments';
 import Content from './Content';
 

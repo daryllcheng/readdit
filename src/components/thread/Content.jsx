@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ScrollArea from 'react-scrollbar';
 import timeago from 'timeago.js';
 import ReactStars from 'react-stars'
@@ -42,7 +42,7 @@ const Content = ({ content, closeView, onClick }) => (
       </div>
         {
           content.preview ?
-          <img src={ content.preview } className="contentImage" /> :
+          <img src={ content.preview } className="contentImage" alt="defaultPreview" /> :
           <div/>
         }
       <div className="contentBody">

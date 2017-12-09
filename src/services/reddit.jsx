@@ -96,6 +96,7 @@ class RedditService {
     if (!data) throw new Error(`getCommentsFromPost Failed, children not returned`)
     return children.map(comment => {
       return {
+        id: comment.data.id,
         replies: comment.data.replies,
         author: comment.data.author,
         stickied: comment.data.stickied,
