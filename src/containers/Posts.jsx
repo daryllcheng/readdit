@@ -8,6 +8,7 @@ import { CSSGrid, layout, makeResponsive, measureItems } from 'react-stonecutter
 import Thread from '../components/thread/Thread';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import ScrollToTop from "react-scroll-up";
+import { PulseLoader } from 'halogenium';
 
 class Posts extends Component {
   constructor(props) {
@@ -21,26 +22,27 @@ class Posts extends Component {
   }
 
   handleClick(postId, subredditUrl) {
-    document.getElementById("scrollToTop").click();
-    setTimeout(() => {
-      if (postId !== undefined) {
-        this.props.dispatch(selectPost(postId));
-        this.props.dispatch(fetchComments(subredditUrl, postId));
-      }
-    }, 1000);
+    if (window.pageYOffset < 200 && postId !== undefined) {
+      this.props.dispatch(selectPost(postId));
+      this.props.dispatch(fetchComments(subredditUrl, postId));
+    } else {
+      document.getElementById("scrollToTop").click();
+      setTimeout(() => {
+        this.handleClick(postId, subredditUrl);
+      }, 1000)
+    }
   }
 
   renderLoading() {
     return (
-      <p>Loading...</p>
+      <PulseLoader color="#E55934" size="30px" margin="4px"/>
     );
   }
 
   render() {
     if (!this.props.subredditPosts) return this.renderLoading();
     const Grid = makeResponsive(measureItems(CSSGrid, { measureImages: true }), {
-      maxWidth: 1920,
-      minPadding: 20
+      maxWidth: 1920
     });
 
     return (
@@ -57,7 +59,7 @@ class Posts extends Component {
           <div className="grid">
             <Grid
               component="ul"
-              columns={5}
+              columns={4}
               columnWidth={315}
               gutterWidth={5}
               gutterHeight={15}
@@ -86,8 +88,11 @@ class Posts extends Component {
         <ScrollToTop 
           showUnder={ 160 }
           duration={ 500 }
+          style={{ "zIndex": 2 }}
         >
-          <span id="scrollToTop">UP</span>
+          <span id="scrollToTop">
+            <i className="fas fa-arrow-circle-up pulsate"></i>
+          </span>
         </ScrollToTop>
       </div>
     );

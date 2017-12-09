@@ -25,6 +25,8 @@ class SubredditFilter extends Component {
       <DropDownMenu 
         value={ this.state.selected }
         onChange={ this.handleChange }
+        autoWidth={ true }
+        animated={ true}
         className="subredditFilter"
         
       >

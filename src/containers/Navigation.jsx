@@ -26,7 +26,7 @@ class Navigation extends Component {
       <div className="Navigation">
         <h1 className="logo">Reddit</h1>
         <div label="subredditSuggestions" onClick={ () => this.handleOpen() }>
-          <i className="fas fa-plus-circle"></i>
+          <i className="fas fa-plus-circle pulsate"></i>
         </div>
         <span className="filter">
           <SubredditFilter 

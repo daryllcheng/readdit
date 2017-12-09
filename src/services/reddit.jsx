@@ -81,7 +81,7 @@ class RedditService {
   }
 
   async getCommentsFromPost(subreddit, postId) {
-    const url = `${ REDDIT_ENDPOINT }${ subreddit }comments/${ postId }.json?sort=top`;
+    const url = `${ REDDIT_ENDPOINT }${ subreddit }comments/${ postId }.json?`;
     const response = await fetch(url, {
       method: 'GET',
       header: {
