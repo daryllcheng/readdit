@@ -1,4 +1,4 @@
-import { FETCHED_SUBREDDITS, SUBSCRIBED_SUBREDDITS, RENDER_SUGGESTIONS } from './types';
+import { FETCHED_SUBREDDITS, SUBSCRIBED_SUBREDDITS, RENDER_DIALOG } from './types';
 import redditService from '../../services/reddit';
 import { getSubscribedSubreddits } from '../reducers/selectors';
 import { fetchPosts } from './posts_action';
@@ -31,5 +31,5 @@ export function subscribeToSubreddit(url) {
 }
 
 export function toggleSuggestions() {
-  return ({ type: RENDER_SUGGESTIONS });
+  return ({ type: RENDER_DIALOG });
 }

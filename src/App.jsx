@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as Selectors from './store/reducers/selectors';
 import Subscriptions from './containers/Subscriptions';
-import Posts from './containers/Posts';
 import Navigation from './containers/Navigation';
+import Posts from './containers/Posts';
 
 class App extends Component {
   render() {
@@ -12,7 +12,7 @@ class App extends Component {
         <div className="background" style={{ backgroundImage: "url(assets/dust_scratches.png)" }} />
         <Navigation />
         {
-          this.props.renderSuggestions ?
+          this.props.renderDialog ?
           <Subscriptions /> :
           <div></div>
         }
@@ -24,7 +24,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    renderSuggestions: Selectors.renderSuggestions(state)
+    renderDialog: Selectors.renderDialog(state)
   };
 }
 

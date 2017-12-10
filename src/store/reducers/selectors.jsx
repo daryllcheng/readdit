@@ -6,8 +6,8 @@ export function getSubreddits(state) {
   return state.subscriptions.subreddits;
 }
 
-export function renderSuggestions(state) {
-  return state.subscriptions.renderSuggestions;
+export function renderDialog(state) {
+  return state.subscriptions.renderDialog;
 }
 
 export function getPosts(state) {

@@ -110,7 +110,7 @@ class Subscriptions extends Component {
           actions={ actions }
           modal={ false }
           titleStyle={{ "fontWeight": "bold", "fontSize": "30px", color: "rgba(0, 0, 0, 0.6)", "textAlign": "center" }}
-          open={ this.props.renderSuggestions }
+          open={ this.props.renderDialog }
           onRequestClose={ this.handleClose }
           autoScrollBodyContent={ true }
           autoDetectWindowHeight={ true }
@@ -177,7 +177,7 @@ function mapStateToProps(state) {
   return {
     subreddits,
     subscribedSubreddits: selectors.getSubscribedSubreddits(state),
-    renderSuggestions: selectors.renderSuggestions(state)
+    renderDialog: selectors.renderDialog(state)
   }
 };
 
