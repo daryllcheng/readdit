@@ -16,7 +16,8 @@ class Subscriptions extends Component {
     this.state = {
       checkedItems: [],
       query: '',
-      errorText: ""
+      errorText: "",
+      default: true
     }
   }
 
@@ -31,16 +32,25 @@ class Subscriptions extends Component {
 
   handleCheck(url) {
     this.props.dispatch(subscribeToSubreddit(url));
+    this.setState({ default: true })
   }
 
   handleChange(event) {
 		this.setState({ query: event.target.value });
 	}
 
+  handleDefaultSelection() {
+    this.props.dispatch(fetchSubreddits())
+    this.setState({ default: true })
+  }
+
   handleKeyPress(event) {
 		if (event.key === 'Enter' && this.state.query !== '') {
       this.props.dispatch(fetchSubreddits(this.state.query));
-      this.setState({ query: '' })
+      this.setState({ 
+        query: "",
+        default: false 
+      })
 		}
 	}
 
@@ -81,7 +91,8 @@ class Subscriptions extends Component {
       <FlatButton
         label="Popular Subreddits"
         primary={ true }
-        onClick={ () => this.props.dispatch(fetchSubreddits()) }
+        onClick={ this.handleDefaultSelection.bind(this) }
+        disabled={ this.state.default }
       />,
       <FlatButton
         label="Let's Go!"
