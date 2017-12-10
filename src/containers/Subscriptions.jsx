@@ -19,6 +19,11 @@ class Subscriptions extends Component {
       errorText: "",
       default: true
     }
+
+    this.handleDefaultSelection = this.handleDefaultSelection.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handlePathSearch = this.handlePathSearch.bind(this);
   }
 
   componentDidMount() {
@@ -91,7 +96,7 @@ class Subscriptions extends Component {
       <FlatButton
         label="Popular Subreddits"
         primary={ true }
-        onClick={ this.handleDefaultSelection.bind(this) }
+        onClick={ this.handleDefaultSelection }
         disabled={ this.state.default }
       />,
       <FlatButton
@@ -123,8 +128,8 @@ class Subscriptions extends Component {
             floatingLabelFixed={ true }
             hintText="basketball"
             value={ this.state.query }
-            onChange={ this.handleChange.bind(this) }
-            onKeyPress={ this.handleKeyPress.bind(this) } 
+            onChange={ this.handleChange }
+            onKeyPress={ this.handleKeyPress } 
           /><br />
           <TextField
             className="subredditTextField"
@@ -133,7 +138,7 @@ class Subscriptions extends Component {
             floatingLabelFixed={ true }
             errorText={ this.state.errorText }
             defaultValue="/r/"
-            onKeyPress={ this.handlePathSearch.bind(this) } 
+            onKeyPress={ this.handlePathSearch } 
           /><br />
           <div className="subscribedSubreddits">
           <h2>Subscribed</h2>

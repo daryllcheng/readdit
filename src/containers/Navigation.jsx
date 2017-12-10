@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as selectors from '../store/reducers/selectors';
-import {  switchFilter } from '../store/actions/posts_action';
-import { toggleSuggestions } from '../store/actions/subscriptions_action';
-import SubredditFilter from '../components/SubredditFilter';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import * as selectors from "../store/reducers/selectors";
+import {  switchFilter } from "../store/actions/posts_action";
+import { toggleSuggestions } from "../store/actions/subscriptions_action";
+import SubredditFilter from "../components/SubredditFilter";
 
 class Navigation extends Component {
   constructor(props) {
     super(props);
 
-    this.onFilterSwitch = this.onFilterSwitch.bind(this);
-  }
+    this.handleFilterSwitch = this.handleFilterSwitch.bind(this);
+  };
 
   handleOpen() {
     this.props.dispatch(toggleSuggestions());
   };
 
-  onFilterSwitch(newFilter) {
+  handleFilterSwitch(newFilter) {
     this.props.dispatch(switchFilter(newFilter));
-  }
+  };
 
   render() {
     return (
@@ -29,23 +29,23 @@ class Navigation extends Component {
         <div className="subredditSuggestions" onClick={ () => this.handleOpen() }>
           <i className="fas fa-plus-circle pulsate"></i>
         </div>
-        <span className="filter">
+        <div className="filter">
           <SubredditFilter 
             subscribedSubreddits={ this.props.subscribedSubreddits } 
             currentFilter={ this.props.currentFilter } 
-            onFilterSwitch={ this.onFilterSwitch }
+            handleFilterSwitch={ this.handleFilterSwitch }
           />
-        </span>
+        </div>
       </div>
     );
-  }
-}
+  };
+};
 
 function mapStateToProps(state) {
   return {
     subscribedSubreddits: selectors.getSubscribedSubreddits(state),
     currentFilter: selectors.getCurrentFilter(state),
-  }
+  };
 };
 
 export default connect(mapStateToProps)(Navigation);

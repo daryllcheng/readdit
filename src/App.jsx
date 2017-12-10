@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as Selectors from './store/reducers/selectors';
-import Subscriptions from './containers/Subscriptions';
-import Navigation from './containers/Navigation';
-import Posts from './containers/Posts';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import * as selectors from "./store/reducers/selectors";
+import Navigation from "./containers/Navigation";
+import Subscriptions from "./containers/Subscriptions";
+import Posts from "./containers/Posts";
 
 class App extends Component {
   render() {
@@ -14,19 +14,18 @@ class App extends Component {
         {
           this.props.renderDialog ?
           <Subscriptions /> :
-          <div></div>
+          <div />
         }
         <Posts/>
       </div>
     );
-  }
-}
+  };
+};
 
 function mapStateToProps(state) {
   return {
-    renderDialog: Selectors.renderDialog(state)
+    renderDialog: selectors.renderDialog(state)
   };
-}
+};
 
 export default connect(mapStateToProps)(App);
-

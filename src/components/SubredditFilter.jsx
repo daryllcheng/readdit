@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
+import React, { Component } from "react";
+import DropDownMenu from "material-ui/DropDownMenu";
+import MenuItem from "material-ui/MenuItem";
 
 class SubredditFilter extends Component {
   constructor(props) {
@@ -9,14 +9,12 @@ class SubredditFilter extends Component {
     this.state = {
       selected: "all"
     }
-  }
+  };
 
   handleChange = (event, index, value) => {
-    this.props.onFilterSwitch(value);
-    this.setState({
-      selected: value
-    })
-  }
+    this.props.handleFilterSwitch(value);
+    this.setState({ selected: value })
+  };
 
   render() {
     return (
@@ -24,7 +22,7 @@ class SubredditFilter extends Component {
         value={ this.state.selected }
         onChange={ this.handleChange }
         autoWidth={ true }
-        animated={ true}
+        animated={ true }
         className="subredditFilter"
         labelStyle={{ color: "#5BC0EB" }}   
       >
@@ -38,8 +36,8 @@ class SubredditFilter extends Component {
           ))
         }
       </DropDownMenu>
-    )
-  }
-}
+    );
+  };
+};
 
 export default SubredditFilter;
