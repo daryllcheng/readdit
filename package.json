@@ -1,9 +1,11 @@
 {
-  "name": "es7-async-practice",
+  "name": "readdit",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://daryllcheng.github.io/readdit",
   "dependencies": {
     "animejs": "^2.2.0",
+    "gh-pages": "^1.1.0",
     "halogenium": "^2.2.3",
     "material-ui": "^0.19.4",
     "node-sass-chokidar": "0.0.3",
@@ -30,7 +32,9 @@
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {}
 }
