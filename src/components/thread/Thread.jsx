@@ -1,23 +1,23 @@
-import React , { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { animateIn, animateOut } from './Animations';
-import Comments from './Comments';
-import Content from './Content';
+import React , { Component } from "react";
+import ReactDOM from "react-dom";
+import { animateIn, animateOut } from "./Animations";
+import Comments from "./Comments";
+import Content from "./Content";
 
 class Thread extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.closeView = this.closeView.bind(this);
-  }
+  };
   
   componentDidMount() {
     animateIn(ReactDOM.findDOMNode(this))
-  }
+  };
 
   closeView(cb) {
     animateOut(ReactDOM.findDOMNode(this), cb)
-  }
+  };
 
   render () {
     return (
@@ -37,8 +37,8 @@ class Thread extends Component {
         }
         </div>
       </div>
-      )
-  }
-}
+    );
+  };
+};
 
 export default Thread;

@@ -31,14 +31,11 @@
     grid-template-areas:
     "topicTextField subredditTextField"
     "suggestions subscribed";
-  
   }
-
-
 }
 
-  .dialogTitle {
-    @extend h1;
-    font-weight: bold;
-    font-size: 1.5em;
-  }
+.dialogTitle {
+  @extend h1;
+  font-weight: bold;
+  font-size: 1.5em;
+}

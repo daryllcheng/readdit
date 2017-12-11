@@ -6,21 +6,26 @@
   grid-template-areas:
     "logo addSubreddits"
     "logo filter";
-  
+
   margin-top: 30px;
   justify-items: center;
+
   .filter {
     grid-area: filter;
-
-  }
-
-  .subredditSuggestions {
-    grid-area: addSubreddits;
-    padding-top: 20px;
+    
+    .subredditFilter {
+      max-width: 500px;
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
   }
 
   .logo {
     grid-area: logo;
   }
 
+  .subredditSuggestions {
+    grid-area: addSubreddits;
+    padding-top: 20px;
+  }
 }

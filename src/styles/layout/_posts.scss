@@ -6,9 +6,13 @@
     "thread"
     "grid";
   
- 
   align-items: center;
   justify-items: center;
+
+  .grid {
+    grid-area: grid;
+    justify-self: center;
+  }
   
   .threadContainer {
     grid-area: thread;
@@ -32,16 +36,6 @@
       
       margin: 0px 100px;
       justify-self: center;
-
     }
   }
-
-  .grid {
-    grid-area: grid;
-    justify-self: center;
-  }
-
-
-
-  
 }

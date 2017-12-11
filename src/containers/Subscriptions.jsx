@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchSubreddits, toggleSuggestions, subscribeToSubreddit } from '../store/actions/subscriptions_action';
-import { fetchPosts } from '../store/actions/posts_action';
-import * as selectors from '../store/reducers/selectors';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import Checkbox from 'material-ui/Checkbox';
-import TextField from 'material-ui/TextField';
-import { PulseLoader } from 'halogenium';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { fetchSubreddits, toggleSuggestions, subscribeToSubreddit } from "../store/actions/subscriptions_action";
+import { fetchPosts } from "../store/actions/posts_action";
+import * as selectors from "../store/reducers/selectors";
+import Dialog from "material-ui/Dialog";
+import FlatButton from "material-ui/FlatButton";
+import Checkbox from "material-ui/Checkbox";
+import TextField from "material-ui/TextField";
+import { PulseLoader } from "halogenium";
 
 class Subscriptions extends Component {
   constructor(props) {
@@ -15,49 +15,50 @@ class Subscriptions extends Component {
 
     this.state = {
       checkedItems: [],
-      query: '',
+      query: "",
       errorText: "",
       default: true
-    }
+    };
 
     this.handleDefaultSelection = this.handleDefaultSelection.bind(this);
+    this.handleClose = this.handleClose.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handlePathSearch = this.handlePathSearch.bind(this);
-  }
+  };
 
   componentDidMount() {
     this.props.dispatch(fetchSubreddits());
-  }
+  };
 
-  handleClose = () => {
+  handleClose() {
     this.props.dispatch(toggleSuggestions());
     this.props.dispatch(fetchPosts());
   };
 
   handleCheck(url) {
     this.props.dispatch(subscribeToSubreddit(url));
-    this.setState({ default: true })
-  }
+    this.setState({ default: true });
+  };
 
   handleChange(event) {
 		this.setState({ query: event.target.value });
-	}
+	};
 
   handleDefaultSelection() {
-    this.props.dispatch(fetchSubreddits())
-    this.setState({ default: true })
-  }
+    this.props.dispatch(fetchSubreddits());
+    this.setState({ default: true });
+  };
 
   handleKeyPress(event) {
-		if (event.key === 'Enter' && this.state.query !== '') {
+		if (event.key === "Enter" && this.state.query !== "") {
       this.props.dispatch(fetchSubreddits(this.state.query));
       this.setState({ 
         query: "",
         default: false 
       })
 		}
-	}
+	};
 
   handlePathSearch(event) {
     let url = event.target.value;
@@ -67,7 +68,7 @@ class Subscriptions extends Component {
         this.setState({ errorText: "" })
       }
     }
-  }
+  };
 
   handleError(input) {
     if (input.length < 4) {
@@ -83,15 +84,17 @@ class Subscriptions extends Component {
       this.setState({ errorText: "" })
       return true;
     }
-  }
+  };
 
   renderLoading() {
     return (
       <PulseLoader color="#E55934" size="30px" margin="4px"/>
     );
-  }
+  };
 
   render() {
+    if (!this.props.subreddits) return this.renderLoading();
+
     const actions = [
       <FlatButton
         label="Popular Subreddits"
@@ -107,7 +110,6 @@ class Subscriptions extends Component {
       />,
     ];
 
-    if (!this.props.subreddits) return this.renderLoading();
     return (
       <div className="Subscriptions">
         <Dialog
@@ -119,63 +121,62 @@ class Subscriptions extends Component {
           onRequestClose={ this.handleClose }
           autoScrollBodyContent={ true }
           autoDetectWindowHeight={ true }
-
         >
-        <div className="dialog">
-          <TextField
-            className="topicTextField"
-            floatingLabelText="Search by topic (e.g. basketball)"
-            floatingLabelFixed={ true }
-            hintText="basketball"
-            value={ this.state.query }
-            onChange={ this.handleChange }
-            onKeyPress={ this.handleKeyPress } 
-          /><br />
-          <TextField
-            className="subredditTextField"
-            hintText="/r/"
-            floatingLabelText="or enter exact path (e.g. /r/nba/)"
-            floatingLabelFixed={ true }
-            errorText={ this.state.errorText }
-            defaultValue="/r/"
-            onKeyPress={ this.handlePathSearch } 
-          /><br />
-          <div className="subscribedSubreddits">
-          <h2>Subscribed</h2>
-            {
-              this.props.subscribedSubreddits ? this.props.subscribedSubreddits.map(subreddit => (  
-                <Checkbox
-                  key={ subreddit }
-                  value={ subreddit }
-                  label={ subreddit }
-                  style={{ 'marginTop': 16 }}
-                  defaultChecked={ true }
-                  onCheck={ () => this.handleCheck(subreddit) }
-                />
-              )) :
-              <p>Empty</p>
-            }
-          </div>
-          <div className="subredditSuggestions">
-          <h2>Subreddits</h2>
-            {
-              this.props.subreddits.map(subreddit => (  
-                <Checkbox
-                  key={ subreddit.url }
-                  value={ subreddit.url }
-                  label={ subreddit.title }
-                  style={{ 'marginTop': 16 }}
-                  onCheck={ () => this.handleCheck(subreddit.url) }
-                />
-              ))
-            }
-          </div>
+          <div className="dialog">
+            <TextField
+              className="topicTextField"
+              floatingLabelText="Search by topic (e.g. basketball)"
+              floatingLabelFixed={ true }
+              hintText="basketball"
+              value={ this.state.query }
+              onChange={ this.handleChange }
+              onKeyPress={ this.handleKeyPress } 
+            /><br />
+            <TextField
+              className="subredditTextField"
+              hintText="/r/"
+              floatingLabelText="or enter exact path (e.g. /r/nba/)"
+              floatingLabelFixed={ true }
+              errorText={ this.state.errorText }
+              defaultValue="/r/"
+              onKeyPress={ this.handlePathSearch } 
+            /><br />
+            <div className="subscribedSubreddits">
+            <h2>Subscribed</h2>
+              {
+                this.props.subscribedSubreddits ? this.props.subscribedSubreddits.map(subreddit => (  
+                  <Checkbox
+                    key={ subreddit }
+                    value={ subreddit }
+                    label={ subreddit }
+                    style={{ "marginTop": 16 }}
+                    defaultChecked={ true }
+                    onCheck={ () => this.handleCheck(subreddit) }
+                  />
+                )) :
+                <p>Empty</p>
+              }
+            </div>
+            <div className="subredditSuggestions">
+            <h2>Subreddits</h2>
+              {
+                this.props.subreddits.map(subreddit => (  
+                  <Checkbox
+                    key={ subreddit.url }
+                    value={ subreddit.url }
+                    label={ subreddit.title }
+                    style={{ "marginTop": 16 }}
+                    onCheck={ () => this.handleCheck(subreddit.url) }
+                  />
+                ))
+              }
+            </div>
           </div>
         </Dialog>
       </div>
     );
-  }
-}
+  };
+};
 
 function mapStateToProps(state) {
   const subreddits = selectors.getSubreddits(state);
@@ -183,7 +184,7 @@ function mapStateToProps(state) {
     subreddits,
     subscribedSubreddits: selectors.getSubscribedSubreddits(state),
     renderDialog: selectors.renderDialog(state)
-  }
+  };
 };
 
 export default connect(mapStateToProps)(Subscriptions);

@@ -1,6 +1,6 @@
-import React from 'react';
-import timeago from 'timeago.js';
-import ReactStars from 'react-stars'
+import React from "react";
+import timeago from "timeago.js";
+import ReactStars from "react-stars";
 
 const Comment = ({ comment })=> (
   <div className="comment">
@@ -10,7 +10,7 @@ const Comment = ({ comment })=> (
       <span className="timeAgo" >{ timeago().format(new Date(comment.created*1000).toLocaleString()) }</span>
       {
         comment.gilded ? 
-        <ReactStars count={ comment.gilded } value={ comment.gilded } color2={ '#ffd700' } edit={ false }/> :
+        <ReactStars count={ comment.gilded } value={ comment.gilded } color2={ "#ffd700" } edit={ false }/> :
         <div />
       }
     </div>
@@ -18,6 +18,6 @@ const Comment = ({ comment })=> (
       <p>{ comment.body }</p>
     </div>
   </div>
-)
+);
 
 export default Comment;

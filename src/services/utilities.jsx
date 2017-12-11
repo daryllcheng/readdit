@@ -7,6 +7,6 @@ const ProcessPreview = (res) => {
   } else {
     return "";
   }
-}
+};
 
 export default ProcessPreview;

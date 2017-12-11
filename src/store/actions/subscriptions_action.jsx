@@ -1,7 +1,7 @@
-import { FETCHED_SUBREDDITS, SUBSCRIBED_SUBREDDITS, RENDER_DIALOG } from './types';
-import redditService from '../../services/reddit';
-import { getSubscribedSubreddits } from '../reducers/selectors';
-import { fetchPosts } from './posts_action';
+import { FETCHED_SUBREDDITS, SUBSCRIBED_SUBREDDITS, RENDER_DIALOG } from "./types";
+import redditService from "../../services/reddit";
+import { getSubscribedSubreddits } from "../reducers/selectors";
+import { fetchPosts } from "./posts_action";
 
 export function fetchSubreddits(query) {
   return async(dispatch, getState) => {
@@ -15,7 +15,7 @@ export function fetchSubreddits(query) {
       console.log(error);
     }
   };
-}
+};
 
 export function subscribeToSubreddit(url) {
   return (dispatch, getState) => {
@@ -27,9 +27,9 @@ export function subscribeToSubreddit(url) {
     dispatch(fetchSubreddits());
     dispatch({ type: SUBSCRIBED_SUBREDDITS, subscribedSubreddits: newSubscribedSubreddits });
     dispatch(fetchPosts());
-  }
-}
+  };
+};
 
 export function toggleSuggestions() {
   return ({ type: RENDER_DIALOG });
-}
+};

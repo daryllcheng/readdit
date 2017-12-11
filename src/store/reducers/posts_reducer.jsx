@@ -1,5 +1,5 @@
-import { FETCHED_POSTS, SWITCHED_FILTER, SELECTED_POST, FETCHED_COMMENTS } from '../actions/types';
-import Immutable from 'seamless-immutable';
+import { FETCHED_POSTS, SWITCHED_FILTER, SELECTED_POST, FETCHED_COMMENTS } from "../actions/types";
+import Immutable from "seamless-immutable";
 
 const initialState = Immutable({
   subredditPosts: undefined,
@@ -29,4 +29,4 @@ export default (state = initialState, action = {}) => {
     default:
       return state;
   }
-}
+};

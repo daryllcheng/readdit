@@ -1,6 +1,6 @@
-import React from 'react';
-import ScrollArea from 'react-scrollbar';
-import Comment from './Comment';
+import React from "react";
+import ScrollArea from "react-scrollbar";
+import Comment from "./Comment";
 
 const Comments = ({ comments })=> (
   <ScrollArea
@@ -19,7 +19,6 @@ const Comments = ({ comments })=> (
     </div>
    }
   </ScrollArea>
-)
+);
 
 export default Comments;
-

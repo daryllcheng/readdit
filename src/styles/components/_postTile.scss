@@ -1,0 +1,31 @@
+.postTile {
+  width: 22em;
+  height: 10em;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 5px 2px;
+  cursor: pointer;
+
+  .imageOverlay {
+    @include overlay(linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0)));
+    opacity: 0;
+  }
+
+  .textOverlay {
+    @include overlay(none);
+  }
+
+  @include breakpoint(small) {
+    width: 19em;
+  }
+
+  &:hover {
+    .postTitle {
+      opacity: 1;
+    }
+
+    .imageOverlay {
+      opacity: 1;
+    }
+  }
+}

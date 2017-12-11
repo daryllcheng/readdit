@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as selectors from '../store/reducers/selectors';
-import { fetchPosts, selectPost, fetchComments } from '../store/actions/posts_action';
-import PostTile from '../components/PostTile';
-import { CSSGrid, layout, makeResponsive, measureItems } from 'react-stonecutter';
-import Thread from '../components/thread/Thread';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import * as selectors from "../store/reducers/selectors";
+import { fetchPosts, selectPost, fetchComments } from "../store/actions/posts_action";
+import PostTile from "../components/PostTile";
+import { CSSGrid, layout, makeResponsive, measureItems } from "react-stonecutter";
+import Thread from "../components/thread/Thread";
+import TransitionGroup from "react-transition-group/TransitionGroup";
 import ScrollToTop from "react-scroll-up";
-import { PulseLoader } from 'halogenium';
+import { PulseLoader } from "halogenium";
 
 class Posts extends Component {
   constructor(props) {
     super(props);
 
     this.handleClick = this.handleClick.bind(this);
-  }
+  };
 
   componentDidMount() {
     this.props.dispatch(fetchPosts());
-  }
+  };
 
   handleClick(postId, subredditUrl) {
     if (postId === undefined) {
@@ -32,16 +32,17 @@ class Posts extends Component {
         this.handleClick(postId, subredditUrl);
       }, 1000)
     }
-  }
+  };
 
   renderLoading() {
     return (
       <PulseLoader color="#E55934" size="30px" margin="4px"/>
     );
-  }
+  };
 
   render() {
     if (!this.props.subredditPosts) return this.renderLoading();
+
     const Grid = makeResponsive(measureItems(CSSGrid, { measureImages: true }), {
       maxWidth: 1920
     });
@@ -56,16 +57,16 @@ class Posts extends Component {
           <div />
         }
         {
-          this.props.subredditPosts && this.props.subredditPosts.length > 24 ?
+          this.props.subredditPosts && this.props.subredditPosts.length > 1 ?
           <div className="grid">
             <Grid
               component="ul"
-              columns={4}
-              columnWidth={315}
-              gutterWidth={5}
-              gutterHeight={15}
-              layout={layout.pinterest}
-              duration={200}
+              columns={ 4 }
+              columnWidth={ 315 }
+              gutterWidth={ 5 }
+              gutterHeight={ 15 }
+              layout={ layout.pinterest }
+              duration={ 200 }
               easing="ease-out"
             >
               {
@@ -100,8 +101,8 @@ class Posts extends Component {
         </ScrollToTop>
       </div>
     );
-  }
-}
+  };
+};
 
 function mapStateToProps(state) {
   return {
@@ -109,7 +110,7 @@ function mapStateToProps(state) {
     subscribedSubreddits: selectors.getSubscribedSubreddits(state),
     currentPost: selectors.getCurrentPost(state),
     currentPostComments: selectors.getPostComments(state)
-  }
+  };
 };
 
 export default connect(mapStateToProps)(Posts);

@@ -1,10 +1,10 @@
 import anime from 'animejs'
 
-let currentAnimation
+let currentAnimation;
 
 const clearCurrentAnimation = () => {
   if (currentAnimation) currentAnimation.pause()
-}
+};
 
 const animationTimings = {
   gridEnter : 1200,
@@ -12,7 +12,7 @@ const animationTimings = {
   cardEnter : 300,
   cardLeave : 100,
   cardStagger : 50
-}
+};
 
 export function animateIn(gridContainer) {
   clearCurrentAnimation()
@@ -38,7 +38,7 @@ export function animateIn(gridContainer) {
       return i * 100
     }
   })
-}
+};
 
 export function animateOut(gridContainer, callback) {
   clearCurrentAnimation()
@@ -62,4 +62,4 @@ export function animateOut(gridContainer, callback) {
     complete: callback,
     offset: '-=200'
   })
-}
+};

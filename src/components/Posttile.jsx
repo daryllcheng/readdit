@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const PostTile = ({ title, thumbnail, overlayClassname }) => (
   <div className="postTile" style={{ backgroundImage: `url(${ thumbnail })` }}>
@@ -8,6 +8,6 @@ const PostTile = ({ title, thumbnail, overlayClassname }) => (
       </div> 
     </div>
   </div>
-)
+);
 
 export default PostTile;

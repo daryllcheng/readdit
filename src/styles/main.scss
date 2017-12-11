@@ -6,18 +6,13 @@
   "vendors/vendors";
 
 @import 
-  "base/base";
-
-@import 
   "layout/application",
-  "layout/dialog",
+  "layout/subscriptions",
   "layout/navigation",
-  "layout/post";
+  "layout/posts";
 
 @import 
+  "components/app",
   "components/thread",
   "components/buttons",
-  "components/filter",
-  "components/comments",
-  "components/tile",
-  "components/content";
+  "components/postTile";
