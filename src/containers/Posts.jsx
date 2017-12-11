@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as selectors from "../store/reducers/selectors";
 import { fetchPosts, selectPost, fetchComments } from "../store/actions/posts_action";
-import PostTile from "../components/PostTile";
-import { CSSGrid, layout, makeResponsive, measureItems } from "react-stonecutter";
-import Thread from "../components/thread/Thread";
 import TransitionGroup from "react-transition-group/TransitionGroup";
 import ScrollToTop from "react-scroll-up";
 import { PulseLoader } from "halogenium";
+import Thread from "../components/thread/Thread";
+import PostsGrid from "../components/postsGrid/PostsGrid";
 
 class Posts extends Component {
   constructor(props) {
@@ -42,11 +41,6 @@ class Posts extends Component {
 
   render() {
     if (!this.props.subredditPosts) return this.renderLoading();
-
-    const Grid = makeResponsive(measureItems(CSSGrid, { measureImages: true }), {
-      maxWidth: 1920
-    });
-
     return (
       <div className="Posts">
         {
@@ -56,40 +50,7 @@ class Posts extends Component {
           </TransitionGroup> :
           <div />
         }
-        {
-          this.props.subredditPosts && this.props.subredditPosts.length > 1 ?
-          <div className="grid">
-            <Grid
-              component="ul"
-              columns={ 4 }
-              columnWidth={ 315 }
-              gutterWidth={ 5 }
-              gutterHeight={ 15 }
-              layout={ layout.pinterest }
-              duration={ 200 }
-              easing="ease-out"
-            >
-              {
-                this.props.subredditPosts.map(post => (
-                  <li 
-                    key={ post.id }
-                    onClick={ () => this.handleClick(post.id, post.subredditUrl) }
-                  >
-                    <PostTile 
-                      title={ post.title.length > 150 ? `${ post.title.slice(0, 150) }...` : post.title }
-                      thumbnail={ post.preview === "" ? `assets/defaultPreview.jpg` : post.preview}
-                      overlayClassname={ post.preview === "" ? "textOverlay" : "imageOverlay" }
-                    />
-                  </li>
-                ))
-              }
-            </Grid>
-          </div> :
-          <div>
-            <h2>Please select a few subreddits...</h2>
-            <img src="assets/emptySubreddits.png" alt="emptySubreddits" />
-          </div>
-        }
+        <PostsGrid posts={ this.props.subredditPosts } handleClick={ this.handleClick } /> :
         <ScrollToTop 
           showUnder={ 160 }
           duration={ 500 }

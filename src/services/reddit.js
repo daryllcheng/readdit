@@ -1,22 +1,10 @@
-import ProcessPreview from "./utilities";
+import { processPreview, getData } from "./utilities";
 const REDDIT_ENDPOINT = "https://www.reddit.com";
 
 class RedditService {
   async getDefaultSubreddits() {
     const url = `${ REDDIT_ENDPOINT }/subreddits/default.json`;
-    const response = await fetch(url, {
-      method: "GET",
-      header: {
-        Accept: "application/json"
-      }
-    });
-    if (!response.ok) throw new Error(`getDefaultSubreddits Failed, HTTP status ${ response.status }`);
-
-    const data = await response.json();
-    const children  = data.data.children;
-
-    if (!children) throw new Error(`getDefaultSubreddits Failed, children not returned`)
-
+    const children = await getData(url, "getDefaultSubreddits")
     return children.sort((a, b) => a.subscribers < b.subscribers).map(subreddit => {
       return {
         title: subreddit.data.display_name,
@@ -28,18 +16,9 @@ class RedditService {
 
   async getSubredditSuggestions(query) {
     const url = `${ REDDIT_ENDPOINT }/api/subreddits_by_topic.json?query=${ query }` ;
-    const response = await fetch(url, {
-      method: "GET",
-      header: {
-        Accept: "application/json"
-      }
-    });
-    if (!response.ok) throw new Error(`getSubredditSuggestions Failed, HTTP status ${ response.status }`);
-
-    const data = await response.json();
+    const data = await getData(url, "getSubredditSuggestions")
 
     if (!data.length) throw new Error(`getSubredditSuggestions Failed, data not returned`)
-
     return data.map(subreddit => {
       return {
         title: subreddit.name,
@@ -50,21 +29,11 @@ class RedditService {
 
   async getPostsFromSubreddit(subredditUrl) {
     const url = `${ REDDIT_ENDPOINT }${ subredditUrl }hot.json?limit=30`;
-    const response = await fetch(url, {
-      method: "GET",
-      header: {
-        Accept: "application/json"
-      }
-    });
-    if (!response.ok) throw new Error(`getPostsFromSubreddit Failed, HTTP status ${ response.status }`);
-
-    const data = await response.json();
-    const children  = data.data.children;
+    const children  = await getData(url, "getPostsFromSubreddit");
     
-    if (!children) throw new Error(`getPostsFromSubreddit Failed, children not returned`)
     return children.map(post => {
       const body = post.data.selftext;
-      const res = post.data.preview ? ProcessPreview(post.data.preview.images[0].resolutions) : "";
+      const res = post.data.preview ? processPreview(post.data.preview.images[0].resolutions) : "";
       return {
         id: post.data.id,
         title: post.data.title,
@@ -82,17 +51,8 @@ class RedditService {
 
   async getCommentsFromPost(subreddit, postId) {
     const url = `${ REDDIT_ENDPOINT }${ subreddit }comments/${ postId }.json?`;
-    const response = await fetch(url, {
-      method: "GET",
-      header: {
-        Accept: "application/json"
-      }
-    });
-    if (!response.ok) throw new Error(`getCommentsFromPost Failed, HTTP status ${ response.status }`);
-
-    const data = await response.json();
+    const data = await getData(url, "getCommentsFromPost");
     const children = data[1].data.children;
-
     if (!data) throw new Error(`getCommentsFromPost Failed, children not returned`)
     return children.map(comment => {
       return {
