@@ -50,7 +50,7 @@ class Posts extends Component {
           </TransitionGroup> :
           <div />
         }
-        <PostsGrid posts={ this.props.subredditPosts } handleClick={ this.handleClick } /> :
+        <PostsGrid posts={ this.props.subredditPosts } handleClick={ this.handleClick } />
         <ScrollToTop 
           showUnder={ 160 }
           duration={ 500 }

@@ -11,7 +11,7 @@ const PostsGrid = ({ posts, handleClick }) => {
   return (
     <div>
       {
-        posts && posts.length > 1 ?
+        posts && posts.length > 1 ? 
         <div className="grid">
           <Grid
             component="ul"

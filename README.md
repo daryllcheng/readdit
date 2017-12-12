@@ -1,6 +1,6 @@
 # Readdit
 
-A Reddit reader.
+Reddit Reader
 
 ## Getting Started
 
